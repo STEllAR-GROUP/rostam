@@ -1,0 +1,48 @@
+# Copyright (c) 2015-2016 Alireza Kheirkhahan
+#
+# Distributed under the Boost Software License, Version 1.0. (See accompanying
+# file BOOST_LICENSE_1_0.rst or copy at http://www.boost.org/LICENSE_1_0.txt)
+---
+
+- name: install some library packages
+  yum: name={{ item }} state=installed
+  with_items:
+    - glibc-devel.i686
+    - libstdc++-devel.i686
+    - libgcc.i686
+
+- name: Create folder for intel lisense
+  file: path=/opt/intel/licenses/ state=directory
+
+- name: rsync intel licenses
+  synchronize: src=/opt/intel/licenses/ dest=/opt/intel/licenses/ delete=yes
+
+- name: rsync intel modulefiles
+  synchronize: src=/opt/intel/modules dest=/opt/intel/ delete=yes
+
+- name: mount the nfs file system
+  mount: name=/mnt/ src=otter:/tools/apps  fstype=nfs state=mounted
+
+# This command changes working directory to:
+#       /mnt/intel/parallel_studio_xe_2016_update1
+# This command will only run when the /opt/intel/2016.0.1
+# doesn't exist.
+
+- name: install intel parallelstudio 2015 update6
+  command: ./install.sh -s rostam.cfg
+  args:
+    chdir: /mnt/intel/parallel_studio_xe_2015_update6
+    creates: /opt/intel/2015.0.6/
+
+- name: install intel parallelstudio 2016 update1
+  command: ./install.sh -s rostam.cfg
+  args:
+    chdir: /mnt/intel/parallel_studio_xe_2016_update1/
+    creates: /opt/intel/2016.0.1/
+
+- name: unmount the temporary file system
+  mount: name=/mnt/ src=otter:/tools/apps  fstype=nfs state=unmounted
+
+- name: remove temporary file system from fstab in case Ansible made it permanent
+  mount: name=/mnt/ src=otter:/tools/apps  fstype=nfs state=absent
+

@@ -1,0 +1,36 @@
+# Copyright (c) 2015-2016 Alireza Kheirkhahan
+#
+# Distributed under the Boost Software License, Version 1.0. (See accompanying
+# file BOOST_LICENSE_1_0.rst or copy at http://www.boost.org/LICENSE_1_0.txt)
+---
+- name: copy root private key
+  copy: src=/root/.ssh/id_rsa dest=/root/.ssh/id_rsa owner=root group=root mode=600
+
+- name: copy root public key
+  copy: src=/root/.ssh/id_rsa.pub dest=/root/.ssh/id_rsa.pub owner=root group=root mode=644
+
+- name: mount /home
+  mount: name=/home src=otter:/home  fstype=nfs state=mounted
+
+- name: add /home to /etc/fstab
+  mount: name=/home src=otter:/home  fstype=nfs state=present
+
+- name: copy rostam.sh
+  copy: src=/etc/profile.d/rostam.sh dest=/etc/profile.d/rostam.sh
+
+- name: install X11 library
+  yum: name={{ item }} state=installed
+  with_items:
+    - xorg-x11-utils
+    - xorg-x11-xauth
+    - xorg-x11-fonts-ISO8859-1-100dpi
+
+me: install python libraris
+  yum: name={{ item }} state=installed
+  with_items:
+    - python-virtualenv
+    - python-pip
+    - python-devel
+    - python-twisted-core
+    - python-twisted-web
+    - python-twisted-words

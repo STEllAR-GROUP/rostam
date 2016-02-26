@@ -1,0 +1,13 @@
+# Copyright (c) 2015-2016 Alireza Kheirkhahan
+#
+# Distributed under the Boost Software License, Version 1.0. (See accompanying
+# file BOOST_LICENSE_1_0.rst or copy at http://www.boost.org/LICENSE_1_0.txt)
+#
+---
+- name: install cuda repo
+  yum: name=http://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-repo-rhel7-7.5-18.x86_64.rpm state=installed
+
+- name: install CUDA drivers
+  yum: name={{ item }} state=installed
+  with_items:
+    - cuda-drivers 

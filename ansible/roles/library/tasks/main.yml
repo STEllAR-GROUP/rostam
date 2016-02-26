@@ -1,0 +1,52 @@
+# Copyright (c) 2015-2016 Alireza Kheirkhahan
+#
+# Distributed under the Boost Software License, Version 1.0. (See accompanying
+# file BOOST_LICENSE_1_0.rst or copy at http://www.boost.org/LICENSE_1_0.txt)
+---
+- name: Install environment-modules
+  yum: name=environment-modules state=present
+
+- name: Install Devtoolset-3 repo
+  yum: name=https://www.softwarecollections.org/en/scls/rhscl/devtoolset-3/epel-7-x86_64/download/rhscl-devtoolset-3-epel-7-x86_64.noarch.rpm state=present
+
+- name: Install Git-1.9 repo
+  yum: name=https://www.softwarecollections.org/en/scls/rhscl/git19/epel-7-x86_64/download/rhscl-git19-epel-7-x86_64.noarch.rpm state=present
+
+- name: create easybuild group
+  group: name=easybuild gid=1616 state=present
+
+- name: create easybuild user
+  user: name=easybuild comment='easybuild installation' uid=1616 group=easybuild shell=/bin/bash home=/home/easybuild state=present
+
+- name: rsync the easybuild library
+  synchronize: src=/opt/eb dest=/opt/ delete=yes
+
+- name: install some library packages
+  yum: name={{ item }} state=installed
+  with_items:
+    - libX11-devel
+    - cmake
+    - libibverbs-devel
+    - boost-devel
+    - boost-mpich-devel
+    - boost-openmpi-devel
+    - python-pip
+    - hdf5-devel
+    - hdf5-mpich-devel
+    - hdf5-openmpi-devel
+    - gperftools-devel
+    - libunwind-devel
+    - papi-devel
+    - emacs
+    - libibverbs-devel
+    - devtoolset-3-toolchain
+    - devtoolset-3-perftools
+    - git19
+    - lsb
+
+- name: update pip
+  pip: name=pip state=latest
+
+- name: install conan
+  pip: name=conan state=present
+

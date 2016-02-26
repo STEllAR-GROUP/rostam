@@ -1,0 +1,58 @@
+# Copyright (c) 2015-2016 Alireza Kheirkhahan
+#
+# Distributed under the Boost Software License, Version 1.0. (See accompanying
+# file BOOST_LICENSE_1_0.rst or copy at http://www.boost.org/LICENSE_1_0.txt)
+#
+---
+- name: mount the nfs file system
+  mount: name=/mnt/ src=otter:/tools/apps  fstype=nfs state=mounted
+
+- name: install slurm dependencies
+  yum: name={{ item }} state=installed
+  with_items:
+    - openssl-devel
+    - pam-devel
+    - readline-devel
+    - perl-ExtUtils-MakeMaker
+    - perl-Switch
+    - redhat-lsb
+    - hwloc
+    - hwloc-devel 
+    - ncurses-devel
+    - ncurses 
+    - perl-DBI
+
+- name: install slurm packages
+  yum: name={{ item }} state=installed
+  with_items:
+    - /mnt/slurm/15.08.8/slurm-15.08.8-1.el7.centos.x86_64.rpm
+    - /mnt/slurm/15.08.8/slurm-plugins-15.08.8-1.el7.centos.x86_64.rpm
+    - /mnt/slurm/15.08.8/slurm-munge-15.08.8-1.el7.centos.x86_64.rpm
+    - /mnt/slurm/15.08.8/slurm-pam_slurm-15.08.8-1.el7.centos.x86_64.rpm
+
+- name: unmount the temporary file system
+  mount: name=/mnt/ src=otter:/tools/apps  fstype=nfs state=unmounted
+
+- name: remove temporary file system from fstab in case Ansible made it permanent
+  mount: name=/mnt/ src=otter:/tools/apps  fstype=nfs state=absent
+
+- name: create slurm group
+  group: name=slurm gid=64030 state=present
+
+- name: create slurm user
+  user: name=slurm comment='Slurm Service' uid=64030 group=slurm shell=/sbin/nologin home=/var/lib/slurm createhome=no
+
+- name: Create log folder for Slurm's services
+  file: path=/var/log/slurm state=directory owner=slurm group=slurm
+
+- name: Create slurm home folder for running batch jobs
+  file: path=/var/lib/slurm state=directory owner=slurm group=slurm mode=755
+
+- name: Copy config file to the target node
+  copy: src=/etc/slurm/slurm.conf dest=/etc/slurm/slurm.conf
+
+# No need for this, /etc/init.d/slurm will start slurmd if it is compute node
+# Make sure slurm is on on chkconfig --list
+#- name: Enable slurmd service on compute node
+#  service: name=slurmd enabled=yes
+
