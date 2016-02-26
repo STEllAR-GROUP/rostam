@@ -12,14 +12,8 @@
 - name: Install Git-1.9 repo
   yum: name=https://www.softwarecollections.org/en/scls/rhscl/git19/epel-7-x86_64/download/rhscl-git19-epel-7-x86_64.noarch.rpm state=present
 
-- name: create easybuild group
-  group: name=easybuild gid=1616 state=present
-
-- name: create easybuild user
-  user: name=easybuild comment='easybuild installation' uid=1616 group=easybuild shell=/bin/bash home=/home/easybuild state=present
-
 - name: rsync the easybuild library
-  synchronize: src=/opt/eb dest=/opt/ delete=yes
+  synchronize: src=/opt/eb dest=/opt/ delete=yes owner=no group=no
 
 - name: install some library packages
   yum: name={{ item }} state=installed
