@@ -1,0 +1,29 @@
+# Copyright (c) 2016 Alireza Kheirkhahan
+# 
+# Distributed under the Boost Software License, Version 1.0. (See accompanying
+# file BOOST_LICENSE_1_0.rst or copy at http://www.boost.org/LICENSE_1_0.txt)
+
+# This is an easyconfig file for EasyBuild, see http://hpcugent.github.io/easybuild
+
+easyblock = 'ConfigureMake'
+
+name = 'ISL'
+version = '0.15'
+
+homepage = 'http://isl.gforge.inria.fr/'
+description = """isl is a library for manipulating sets and relations of integer points bounded by linear constraints."""
+
+#toolchain = {'name': 'GCC', 'version': '4.9.3-2.25'}
+toolchain = {'name': 'dummy', 'version': 'dummy'}
+
+source_urls = ['http://isl.gforge.inria.fr/']
+sources = [SOURCELOWER_TAR_BZ2]
+
+#dependencies = [('GMP', '6.1.0')]
+# NOTE: load GMP module before running this easyconfig
+sanity_check_paths = {
+    'files': ['lib/libisl.%s' % SHLIB_EXT, 'lib/libisl.a'],
+    'dirs': ['include/isl']
+}
+
+moduleclass = 'math'
