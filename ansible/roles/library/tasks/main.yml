@@ -21,9 +21,6 @@
     - libX11-devel
     - cmake
     - libibverbs-devel
-    - boost-devel
-    - boost-mpich-devel
-    - boost-openmpi-devel
     - python-pip
     - hdf5-devel
     - hdf5-mpich-devel
@@ -37,6 +34,34 @@
     - devtoolset-3-perftools
     - git19
     - lsb
+
+- name: installing clang packages
+  yum: name={{ item }} state=installed
+  with_items:
+    - clang
+    - clang-analyzer
+    - clang-devel
+    - llvm-devel
+    - llvm-doc
+
+- name: installing boost packages
+  yum: name={{ item }} state=installed
+  with_items:
+    - boost
+    - boost-build
+    - boost-devel
+    - boost-mpich-devel
+    - boost-openmpi-devel
+
+- name: installing libraries for boost 
+  yum: name={{ item }} state=installed
+  with_items:
+    - libicu-devel
+    - bzip2-devel
+    - texinfo
+    - zlib-devel
+    - python-devel
+
 
 - name: update pip
   pip: name=pip state=latest
