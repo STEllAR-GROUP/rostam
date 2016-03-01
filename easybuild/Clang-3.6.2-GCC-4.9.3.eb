@@ -26,18 +26,17 @@ sources = [
     "llvm-%(version)s.src.tar.xz",
     "cfe-%(version)s.src.tar.xz",
     "compiler-rt-%(version)s.src.tar.xz",
-    "polly-%(version)s.src.tar.xz",
 ]
 
-# NOTE: load CMAKE moudule bofore running this easyconfig
-# NOTE: load ISL module before running this easyconfig
+builddependencies = [
+    ('CMake', '3.3.1', '', True),
+]
+
 
 osdependencies = [('python', 'libxml2', 'gmp')]
 
 assertions = True
-
-# Stupid cmake has problem finding ISL, so removed the polly
-usepolly = False
+skip_sanitizer_tests = True
 
 build_targets = ['X86']
 

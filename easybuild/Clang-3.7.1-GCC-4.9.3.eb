@@ -29,8 +29,9 @@ sources = [
     "polly-%(version)s.src.tar.xz",
 ]
 
-# NOTE: load CMAKE moudule bofore running this easyconfig
-
+builddependencies = [
+    ('CMake', '3.3.1', '', True),
+]
 osdependencies = [('python', 'libxml2', 'gmp')]
 
 assertions = True
