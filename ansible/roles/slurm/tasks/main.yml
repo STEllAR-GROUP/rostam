@@ -5,7 +5,7 @@
 #
 ---
 - name: mount the nfs file system
-  mount: name=/mnt/ src=otter:/tools/apps  fstype=nfs state=mounted
+  mount: name=/apps/ src=otter:/tools/apps  fstype=nfs state=mounted
 
 - name: install slurm dependencies
   yum: name={{ item }} state=installed
@@ -25,16 +25,16 @@
 - name: install slurm packages
   yum: name={{ item }} state=installed
   with_items:
-    - /mnt/slurm/15.08.8/slurm-15.08.8-1.el7.centos.x86_64.rpm
-    - /mnt/slurm/15.08.8/slurm-plugins-15.08.8-1.el7.centos.x86_64.rpm
-    - /mnt/slurm/15.08.8/slurm-munge-15.08.8-1.el7.centos.x86_64.rpm
-    - /mnt/slurm/15.08.8/slurm-pam_slurm-15.08.8-1.el7.centos.x86_64.rpm
+    - /apps/slurm/15.08.8/slurm-15.08.8-1.el7.centos.x86_64.rpm
+    - /apps/slurm/15.08.8/slurm-plugins-15.08.8-1.el7.centos.x86_64.rpm
+    - /apps/slurm/15.08.8/slurm-munge-15.08.8-1.el7.centos.x86_64.rpm
+    - /apps/slurm/15.08.8/slurm-pam_slurm-15.08.8-1.el7.centos.x86_64.rpm
 
 - name: unmount the temporary file system
-  mount: name=/mnt/ src=otter:/tools/apps  fstype=nfs state=unmounted
+  mount: name=/apps/ src=otter:/tools/apps  fstype=nfs state=unmounted
 
 - name: remove temporary file system from fstab in case Ansible made it permanent
-  mount: name=/mnt/ src=otter:/tools/apps  fstype=nfs state=absent
+  mount: name=/apps/ src=otter:/tools/apps  fstype=nfs state=absent
 
 - name: create slurm group
   group: name=slurm gid=64030 state=present
