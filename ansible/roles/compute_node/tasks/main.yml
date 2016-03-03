@@ -4,5 +4,5 @@
 # file BOOST_LICENSE_1_0.rst or copy at http://www.boost.org/LICENSE_1_0.txt)
 ---
 - name: Copy PAM config file
-  copy: src=/etc/pam.d/sshd dest=/etc/pam.d/sshd
+  copy: src=/tools/rostam/config dest=/etc/pam.d/sshd
 
