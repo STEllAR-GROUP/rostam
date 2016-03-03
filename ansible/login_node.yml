@@ -10,7 +10,6 @@
 
   roles:
     - base
-    - epel
     - munge
     - slurm
     - library

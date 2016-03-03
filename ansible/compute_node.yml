@@ -10,11 +10,10 @@
 
   roles:
     - base
-    - epel
     - munge
     - slurm
     - library
-    - intel
+#    - intel
     - cuda
     - users
     - compute_node
