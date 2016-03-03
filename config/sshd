@@ -1,3 +1,4 @@
+#/etc/pam.d/sshd
 #%PAM-1.0
 auth	   required	pam_sepermit.so
 auth       substack     password-auth
