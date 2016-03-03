@@ -144,10 +144,10 @@ cd $DIRECTORY/source
 # Boostrap the Boost build system, Boost.Build. 
 $DIRECTORY/source/bootstrap.sh $EXCLUDES $COMPILER
 
-$BJAM --stagedir=$DIRECTORY/debug address-model=64 architecture=x86 variant=debug --layout=versioned --build-type=complete -j${THREADS} 
+$BJAM --stagedir=$DIRECTORY/debug address-model=64 architecture=x86 variant=debug -j${THREADS} 
 if ! [[ $? == "0" ]]; then echo "ERROR: Debug build of Boost failed"; error; fi
 
-$BJAM --stagedir=$DIRECTORY/release address-model=64 architecture=x86 variant=release --layout=versioned --build-type=complete -j${THREADS}
+$BJAM --stagedir=$DIRECTORY/release address-model=64 architecture=x86 variant=release -j${THREADS}
 if ! [[ $? == "0" ]]; then echo "ERROR: Release build of Boost failed"; error; fi
 
 # Build the Boost.Wave preprocessor.
