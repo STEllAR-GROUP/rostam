@@ -1,0 +1,23 @@
+# Copyright (c) 2016 Alireza Kheirkhahan
+#  
+# Distributed under the Boost Software License, Version 1.0. (See accompanying
+# file BOOST_LICENSE_1_0.rst or copy at http://www.boost.org/LICENSE_1_0.txt)
+#
+# This is an easyconfig file for EasyBuild, see http://hpcugent.github.io/easybuild
+
+name = 'icc'
+version = '2013.5.192'
+
+homepage = 'http://software.intel.com/en-us/intel-compilers/'
+description = "C and C++ compiler from Intel"
+
+toolchain = {'name': 'dummy', 'version': ''}
+
+sources = ['l_ccompxe_%(version)s.tgz']
+
+dontcreateinstalldir = 'True'
+
+# license file
+license_file = '/opt/intel/licenses/'
+
+moduleclass = 'compiler'
