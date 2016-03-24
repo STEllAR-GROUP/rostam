@@ -8,7 +8,7 @@
 easyblock = 'ConfigureMake'
 
 name = 'CMake'
-version = '3.4.1'
+version = '3.4.3'
 
 homepage = 'http://www.cmake.org'
 description = """CMake, the cross-platform, open-source build system.
