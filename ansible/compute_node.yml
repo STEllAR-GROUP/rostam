@@ -13,5 +13,4 @@
     - munge
     - slurm
     - library
-    - cuda
     - compute_node
