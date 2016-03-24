@@ -74,3 +74,16 @@
 - name: rsync the module files
   synchronize: src=/opt/modules dest=/opt/ delete=yes owner=no group=no
 
+- name: installing intel compiler dependency packages
+  yum: name={{ item }} state=installed
+  with_items:
+    - glibc-devel.i686
+    - libstdc++-devel.i686
+    - libgcc.i686
+
+- name: Create folder for intel lisense
+  file: path=/opt/intel/licenses/ state=directory
+
+- name: rsync intel licenses
+  synchronize: src=/opt/intel/licenses/ dest=/opt/intel/licenses/ delete=yes
+

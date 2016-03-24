@@ -13,6 +13,5 @@
     - munge
     - slurm
     - library
-    - intel
     - cuda
     - users

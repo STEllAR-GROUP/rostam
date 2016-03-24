@@ -13,7 +13,5 @@
     - munge
     - slurm
     - library
-#    - intel
     - cuda
-    - users
     - compute_node
