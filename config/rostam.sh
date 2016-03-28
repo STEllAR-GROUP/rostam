@@ -10,8 +10,11 @@
 # Modules generate by easybuild
 MODULEPATH=/opt/eb/modules/all:$MODULEPATH
 
-# Modules for Intel compilers
+# Modules for manually compiled libraries
 MODULEPATH=/opt/modules:$MODULEPATH
+
+# Modules for boost libraries
+MODULEPATH=/opt/boost/modules:$MODULEPATH
 
 
 # Generating key pair to enable access through the cluster
