@@ -95,3 +95,11 @@
   with_items:
     - cuda-drivers
 
+- name: install ninja dependencies
+  yum: name={{ item }} state=installed
+  with_items:
+    - re2c
+
+- name: rsync the manually compiled library
+  synchronize: src=/opt/mn dest=/opt/ delete=yes owner=no group=no
+
