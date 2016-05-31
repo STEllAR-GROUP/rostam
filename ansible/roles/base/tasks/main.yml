@@ -37,3 +37,8 @@
     - python-twisted-core
     - python-twisted-web
     - python-twisted-words
+
+- name: insalling some base packages
+  yum: name={{ item }} state=installed
+  with_items:
+    - zsh
