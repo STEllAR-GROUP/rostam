@@ -6,11 +6,8 @@
 - name: Install environment-modules
   yum: name=environment-modules state=present
 
-- name: Install Devtoolset-3 repo
-  yum: name=https://www.softwarecollections.org/en/scls/rhscl/devtoolset-3/epel-7-x86_64/download/rhscl-devtoolset-3-epel-7-x86_64.noarch.rpm state=present
-
-- name: Install Git-1.9 repo
-  yum: name=https://www.softwarecollections.org/en/scls/rhscl/git19/epel-7-x86_64/download/rhscl-git19-epel-7-x86_64.noarch.rpm state=present
+- name: Install softwarecollections repo
+  yum: name=centos-release-scl state=present
 
 - name: install some library packages
   yum: name={{ item }} state=installed
@@ -29,6 +26,8 @@
     - libibverbs-devel
     - devtoolset-3-toolchain
     - devtoolset-3-perftools
+    - devtoolset-4-toolchain
+    - devtoolset-4-perftools
     - git19
     - lsb
 
