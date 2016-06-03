@@ -85,6 +85,7 @@ contrib/download_prerequisites
 
 ./configure \
 --prefix=$PREFIX \
+--with-pkgversion=`date +'%Y%m%d'` \
 --enable-bootstrap \
 --enable-shared \
 --enable-threads=posix \
