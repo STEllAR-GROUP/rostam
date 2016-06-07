@@ -13,12 +13,14 @@ usage()
     echo "This script downloads and builds the Boost C++ Libraries."
     echo
     echo "Options:"
-    echo "  -d    Directory where Boost should be built."
+    echo "  -d    Directory where Boost should be built"
     echo "  -v    Version of Boost to build (format: X.YY.Z)"
-    echo "  -n    Don't download Boost (expects tarball named boost_X.YY.Z.tar.bz2 in the -d directory) [default: 1.55.0]"
+    echo "  -n    Don't download Boost (expects tarball named boost_X.YY.Z.tar.bz2 in the -d directory) [default: 1.58.0]"
     echo "  -x    Libraries to exclude (format: exclude0,exclude1...) [default: mpi,graph_parallel,python]"
     echo "  -t    Number of threads to use while building [default: number of processors]" 
-    echo "  -c    Compiler [default: automatically detected]" 
+    echo "  -c    Compiler [default: automatically detected]"
+    echo "  -m    The Module directory [default: /opt/boost/modules]"
+    echo "  -w    The Module word [default: directory of boost installation]"
 }
 
 DIRECTORY=
@@ -38,7 +40,7 @@ DOWNLOAD=1
 THREADS=`grep -c ^processor /proc/cpuinfo`
 
 COMPILER=
-
+MODULE_DIRECTORY=/opt/boost/modules
 ###############################################################################
 # Argument parsing
 while getopts "hnt:d:v:c:x:" OPTION; do case $OPTION in
@@ -88,6 +90,12 @@ while getopts "hnt:d:v:c:x:" OPTION; do case $OPTION in
         ;;
     c)
         COMPILER=$OPTARG
+        ;;
+    m)
+        MODULE_DIRECTORY=$OPTARG
+        ;;
+    w)
+        MODULE_WORD=$OPTARG
         ;;
     ?)
         usage
@@ -205,5 +213,51 @@ echo
 echo "Release root:"
 echo "  BOOST_ROOT=$DIRECTORY/release"
 
+####################################################################
+# Creating the Module file
+if [ -z "$MODULE_WORD" ]; then MODULE_WORD=`basename $DIRECTORY`; fi
 
+mkdir -p $MODULE_DIRECTORY/boost
+
+if [ -f $MODULE_DIRECTORY/boost/$MODULE_WORD ]
+   then rm $MODULE_DIRECTORY/boost/$MODULE_WORD; fi
+
+echo "#%Module" >> $MODULE_DIRECTORY/boost/$MODULE_WORD
+echo "proc ModulesHelp { } {" >> $MODULE_DIRECTORY/boost/$MODULE_WORD
+echo "    puts stderr { Boost provides free peer-reviewed portable C++ source libraries. - Homepage: http://www.boost.org/" >> $MODULE_DIRECTORY/boost/$MODULE_WORD
+echo "    }" >> $MODULE_DIRECTORY/boost/$MODULE_WORD
+echo "}" >> $MODULE_DIRECTORY/boost/$MODULE_WORD
+echo "" >> $MODULE_DIRECTORY/boost/$MODULE_WORD
+echo "module-whatis {Boost provides free peer-reviewed portable C++ source libraries. - Homepage: http://www.boost.org/}" >> $MODULE_DIRECTORY/boost/$MODULE_WORD
+echo "" >> $MODULE_DIRECTORY/boost/$MODULE_WORD
+echo "set root $DIRECTORY/release" >> $MODULE_DIRECTORY/boost/$MODULE_WORD
+echo "" >> $MODULE_DIRECTORY/boost/$MODULE_WORD
+echo "conflict boost" >> $MODULE_DIRECTORY/boost/$MODULE_WORD
+echo "" >> $MODULE_DIRECTORY/boost/$MODULE_WORD
+echo "prepend-path    CPATH           \$root" >> $MODULE_DIRECTORY/boost/$MODULE_WORD
+echo "prepend-path    LD_LIBRARY_PATH         \$root/lib" >> $MODULE_DIRECTORY/boost/$MODULE_WORD
+echo "prepend-path    LIBRARY_PATH            \$root/lib" >> $MODULE_DIRECTORY/boost/$MODULE_WORD
+echo "setenv  BOOST_ROOT            \"\$root\"" >> $MODULE_DIRECTORY/boost/$MODULE_WORD
+echo "setenv  BOOST_VERSION          \"$DOT_VERSION\"" >> $MODULE_DIRECTORY/boost/$MODULE_WORD
+
+if [ -f $MODULE_DIRECTORY/boost/$MODULE_WORD-debug ]
+   then rm $MODULE_DIRECTORY/boost/$MODULE_WORD-debug ; fi
+
+echo "#%Module" >> $MODULE_DIRECTORY/boost/$MODULE_WORD-debug 
+echo "proc ModulesHelp { } {" >> $MODULE_DIRECTORY/boost/$MODULE_WORD-debug 
+echo "    puts stderr { Boost provides free peer-reviewed portable C++ source libraries. - Homepage: http://www.boost.org/" >> $MODULE_DIRECTORY/boost/$MODULE_WORD-debug 
+echo "    }" >> $MODULE_DIRECTORY/boost/$MODULE_WORD-debug 
+echo "}" >> $MODULE_DIRECTORY/boost/$MODULE_WORD-debug 
+echo "" >> $MODULE_DIRECTORY/boost/$MODULE_WORD-debug 
+echo "module-whatis {Boost provides free peer-reviewed portable C++ source libraries. - Homepage: http://www.boost.org/}" >> $MODULE_DIRECTORY/boost/$MODULE_WORD-debug 
+echo "" >> $MODULE_DIRECTORY/boost/$MODULE_WORD-debug 
+echo "set root $DIRECTORY/debug " >> $MODULE_DIRECTORY/boost/$MODULE_WORD-debug 
+echo "" >> $MODULE_DIRECTORY/boost/$MODULE_WORD-debug 
+echo "conflict boost" >> $MODULE_DIRECTORY/boost/$MODULE_WORD-debug 
+echo "" >> $MODULE_DIRECTORY/boost/$MODULE_WORD-debug 
+echo "prepend-path    CPATH           \$root" >> $MODULE_DIRECTORY/boost/$MODULE_WORD-debug 
+echo "prepend-path    LD_LIBRARY_PATH         \$root/lib" >> $MODULE_DIRECTORY/boost/$MODULE_WORD-debug 
+echo "prepend-path    LIBRARY_PATH            \$root/lib" >> $MODULE_DIRECTORY/boost/$MODULE_WORD-debug 
+echo "setenv  BOOST_ROOT            \"\$root\"" >> $MODULE_DIRECTORY/boost/$MODULE_WORD-debug 
+echo "setenv  BOOST_VERSION          \"$DOT_VERSION\"" >> $MODULE_DIRECTORY/boost/$MODULE_WORD-debug 
 
