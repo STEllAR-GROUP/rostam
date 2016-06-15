@@ -30,6 +30,9 @@
     - devtoolset-4-perftools
     - git19
     - lsb
+    - docbook-utils
+    - docbook-dtds
+    - docbook-style-xsl.noarch
 
 - name: installing clang packages
   yum: name={{ item }} state=installed
