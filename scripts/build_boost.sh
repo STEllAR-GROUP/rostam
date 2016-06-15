@@ -147,7 +147,7 @@ if ! [[ $? == "0" ]]; then echo "ERROR: Unable to unpack `pwd`/boost_$US_VERSION
 
 mv boost_$US_VERSION source
 # Changing source folder permission to anybody have read access.
-#chmod 755 source
+chmod 755 source
 
 cd $DIRECTORY/source
 
