@@ -147,7 +147,7 @@ if ! [[ $? == "0" ]]; then echo "ERROR: Unable to unpack `pwd`/boost_$US_VERSION
 
 mv boost_$US_VERSION source
 # Changing source folder permission to anybody have read access.
-chmod 755 source
+#chmod 755 source
 
 cd $DIRECTORY/source
 
@@ -161,8 +161,9 @@ $BJAM --stagedir=$DIRECTORY/release address-model=64 architecture=x86 variant=re
 if ! [[ $? == "0" ]]; then echo "ERROR: Release build of Boost failed"; error; fi
 
 # Build the Boost.Wave preprocessor.
-cd $DIRECTORY/source/tools/wave/build
-$BJAM dist-bin -j${THREADS} variant=release address-model=64 architecture=x86
+# Boost version >= 1.56 do not contain wave anymore
+#cd $DIRECTORY/source/tools/wave/build
+#$BJAM dist-bin -j${THREADS} variant=release address-model=64 architecture=x86
 
 # Build the Quickbook documentation framework.
 cd $DIRECTORY/source/tools/quickbook
