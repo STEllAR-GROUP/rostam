@@ -90,7 +90,7 @@ contrib/download_prerequisites
 --enable-shared \
 --enable-threads=posix \
 --enable-checking=release \
---disable-multilib \
+--enable-multilib \
 --enable-languages=c,c++,fortran,lto \
 --enable-plugin \
 --with-linker-hash-style=gnu \
@@ -102,6 +102,7 @@ contrib/download_prerequisites
 --enable-linker-build-id \
 --enable-gnu-indirect-function \
 --with-tune=generic \
+--with-arch_32=x86-64 \
 --build=x86_64-redhat-linux 
 
 make -j${THREADS}
