@@ -92,6 +92,16 @@ wget http://llvm.org/releases/$VERSION/libcxx-$VERSION.src.tar.xz
 wget http://llvm.org/releases/$VERSION/libcxxabi-$VERSION.src.tar.xz
     if ! [[ $? == "0" ]]; then echo "ERROR: Unable to download llvm"; error; fi
 
+# OpenMP
+wget http://llvm.org/releases/$VERSION/openmp-$VERSION.src.tar.xz
+    if ! [[ $? == "0" ]]; then echo "ERROR: Unable to download llvm"; error; fi
+
+# LLVM Test Suite
+wget http://llvm.org/releases/$VERSION/test-suite-$VERSION.src.tar.xz
+    if ! [[ $? == "0" ]]; then echo "ERROR: Unable to download llvm"; error; fi
+
+# Extracting the Source:
+
 tar --no-same-owner -xf llvm-$VERSION.src.tar.xz
 if ! [[ $? == "0" ]]; then echo "ERROR: Unable to unpack `pwd`/llvm-$VERSION.src.tar.xz"; error; fi
 
@@ -114,6 +124,14 @@ mv libcxx-$VERSION.src/ libcxx
 tar --no-same-owner -xf ../../libcxxabi-$VERSION.src.tar.xz
 if ! [[ $? == "0" ]]; then echo "ERROR: Unable to unpack `pwd`/libcxxabi-$VERSION.src.tar.xz"; error; fi
 mv libcxxabi-$VERSION.src/ libcxxabi
+
+tar --no-same-owner -xf ../../openmp-$VERSION.src.tar.xz
+if ! [[ $? == "0" ]]; then echo "ERROR: Unable to unpack `pwd`/openmp-$VERSION.src.tar.xz"; error; fi
+mv openmp-$VERSION.src/ openmp
+
+tar --no-same-owner -xf ../../test-suite-$VERSION.src.tar.xz
+if ! [[ $? == "0" ]]; then echo "ERROR: Unable to unpack `pwd`/test-suite-$VERSION.src.tar.xz"; error; fi
+mv test-suite-$VERSION.src/ test-suite
 
 cd $BUILD_DIRECTORY/clang-$VERSION/llvm
 mkdir build
