@@ -153,6 +153,7 @@ echo "conflict clang" >> $MODULE_DIRECTORY/clang/$VERSION
 echo "" >> $MODULE_DIRECTORY/clang/$VERSION
 echo "prepend-path    CPATH           \$root/include" >> $MODULE_DIRECTORY/clang/$VERSION
 echo "prepend-path    LD_LIBRARY_PATH        \$root/lib" >> $MODULE_DIRECTORY/clang/$VERSION
+echo "prepend-path    LD_LIBRARY_PATH        \$root/lib/clang/$VERSION/lib/linux" >> $MODULE_DIRECTORY/clang/$VERSION
 echo "prepend-path    LIBRARY_PATH            \$root/lib" >> $MODULE_DIRECTORY/clang/$VERSION
 echo "prepend-path    MANPATH         \$root/share/man" >> $MODULE_DIRECTORY/clang/$VERSION
 echo "prepend-path    PATH            \$root/bin" >> $MODULE_DIRECTORY/clang/$VERSION
