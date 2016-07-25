@@ -21,6 +21,7 @@ usage()
     echo "  -c    Compiler [default: automatically detected]"
     echo "  -m    The Module directory [default: /opt/boost/modules]"
     echo "  -w    The Module word [default: directory of boost installation]"
+    echo "  -b    bjam options. good place to assign compile flags. ie toolset=clang cxxflags=-stdlib=libc++ linkflags=-stdlib=libc++"
 }
 
 DIRECTORY=
@@ -43,7 +44,7 @@ COMPILER=
 MODULE_DIRECTORY=/opt/boost/modules
 ###############################################################################
 # Argument parsing
-while getopts "hnt:d:v:c:x:" OPTION; do case $OPTION in
+while getopts "hnt:d:v:c:x:b:" OPTION; do case $OPTION in
     h)
         usage
         exit 0
@@ -96,6 +97,9 @@ while getopts "hnt:d:v:c:x:" OPTION; do case $OPTION in
         ;;
     w)
         MODULE_WORD=$OPTARG
+        ;;
+    b)
+        BJAM_FLAGS=$OPTARG
         ;;
     ?)
         usage
@@ -154,10 +158,10 @@ cd $DIRECTORY/source
 # Boostrap the Boost build system, Boost.Build. 
 $DIRECTORY/source/bootstrap.sh $EXCLUDES $COMPILER
 
-$BJAM --stagedir=$DIRECTORY/debug address-model=64 architecture=x86 variant=debug -j${THREADS} 
+$BJAM --stagedir=$DIRECTORY/debug address-model=64 architecture=x86 variant=debug $BJAM_FLAGS -j${THREADS} 
 if ! [[ $? == "0" ]]; then echo "ERROR: Debug build of Boost failed"; error; fi
 
-$BJAM --stagedir=$DIRECTORY/release address-model=64 architecture=x86 variant=release -j${THREADS}
+$BJAM --stagedir=$DIRECTORY/release address-model=64 architecture=x86 variant=release $BJAM_FLAGS -j${THREADS}
 if ! [[ $? == "0" ]]; then echo "ERROR: Release build of Boost failed"; error; fi
 
 # Build the Boost.Wave preprocessor.
@@ -167,15 +171,15 @@ if ! [[ $? == "0" ]]; then echo "ERROR: Release build of Boost failed"; error; f
 
 # Build the Quickbook documentation framework.
 cd $DIRECTORY/source/tools/quickbook
-$BJAM dist-bin -j${THREADS} variant=release address-model=64 architecture=x86
+$BJAM dist-bin -j${THREADS} variant=release address-model=64 architecture=x86 $BJAM_FLAGS 
 
 # Copy over the BoostBook DTD and XML code to the staging directory.
 cd $DIRECTORY/source/tools
-$BJAM dist-share-boostbook address-model=64 architecture=x86
+$BJAM dist-share-boostbook address-model=64 architecture=x86 $BJAM_FLAGS 
 
 # Build the auto_index indexing tool.
 cd $DIRECTORY/source/tools/auto_index/build
-$BJAM i -j${THREADS} variant=release address-model=64 architecture=x86
+$BJAM i -j${THREADS} variant=release address-model=64 architecture=x86 $BJAM_FLAGS 
 
 # These links are necessary to ensure that the stage directories are usable 
 # Boost source trees.
