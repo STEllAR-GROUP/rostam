@@ -1,4 +1,4 @@
-This playbook configures new compute node for the cluster.
+This playbook configures new node for the cluster.
 
 Before running this playbook you must:
 	- Add MAC Address and Hostname to /etc/dnsmasq.conf (Needed for PXE_boot)
@@ -7,8 +7,28 @@ Before running this playbook you must:
 	- Add Hostname to /etc/ansible/hosts
 	- Add Hostname to /etc/slurm/slurm.conf
 
-Note: It better to first run the update playbook or update the kernel manually
+Use Ansible for the rest:
+	-create file named hosts:
+		[new_n]
+		hostname
 
-Option:
-	Save the new nodes in 'hosts' and run:
-	# ansible-playbook -i hosts new_node.yml 
+		[rostam]
+		hostname
+
+	# Update the new nodes:
+	- ansible-playbook -i hosts update_node.yml 
+
+	# if the node is compute node:
+	- ansible-playbook -i hosts compute_node.yml
+	# if it is loging node:
+	- ansible-playbook -i hosts login_node.yml
+
+	# Copy the updated /etc/slurm/slurm.conf across the all nodes:
+	ansible rostam -m copy -a "src=/etc/slurm/slurm.conf dest=/etc/slurm/slurm.conf"
+
+
+#############################
+
+	Synchronizing the library across the cluster:
+	Use the following command to sync the files:
+	- ansible-playbook lib_rsync.yml 
