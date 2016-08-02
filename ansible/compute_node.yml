@@ -6,7 +6,7 @@
 ---
 
 - name: configure the new nodes
-  hosts: new_n
+  hosts: compute
 
   roles:
     - base

@@ -18,6 +18,9 @@
 - name: copy rostam.sh
   copy: src=/tools/rostam/config/rostam.sh dest=/etc/profile.d/rostam.sh
 
+- name: Copy soduers config file
+  copy: src=/tools/rostam/config/sudoers dest=/etc/
+
 - name: Install epel
   yum: name=epel-release state=present
 
