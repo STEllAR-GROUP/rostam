@@ -6,6 +6,9 @@
 - name: Install environment-modules
   yum: name=environment-modules state=present
 
+- name: copy module config
+  copy: src=/tools/rostam/config/.modulespath dest=/usr/share/Modules/init/.modulespath
+
 - name: Install softwarecollections repo
   yum: name=centos-release-scl state=present
 

@@ -7,15 +7,6 @@
 
 # System wide environment for rostam cluster, any customization goes here:
 
-# Modules generate by easybuild
-MODULEPATH=/opt/eb/modules/all:$MODULEPATH
-
-# Modules for manually compiled libraries
-MODULEPATH=/opt/modules:$MODULEPATH
-
-# Modules for boost libraries
-MODULEPATH=/opt/boost/modules:$MODULEPATH
-
 
 # Generating key pair to enable access through the cluster
 if [ ! -f $HOME/.ssh/id_rsa ]; then
