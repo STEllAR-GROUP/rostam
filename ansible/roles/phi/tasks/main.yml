@@ -5,7 +5,7 @@
 #
 ---
 - name: mount the nfs file system
-  mount: name=/mnt/ src=otter:/tools/apps  fstype=nfs state=mounted
+  mount: name=/mnt/ src=otter:/tools/pkg  fstype=nfs state=mounted
 
 - name: install mpss packages
   yum: name={{ item }} state=installed disable_gpg_check=yes

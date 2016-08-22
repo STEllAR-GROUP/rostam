@@ -6,10 +6,12 @@
 ---
 
 - name: configure the new nodes
-  hosts: new_n
+  hosts: login
 
   roles:
     - base
     - munge
     - slurm
     - library
+    - libsync
+    - login_node

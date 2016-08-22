@@ -13,4 +13,5 @@
     - munge
     - slurm
     - library
+    - libsync
     - compute_node

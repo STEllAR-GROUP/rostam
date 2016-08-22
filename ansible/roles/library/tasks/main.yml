@@ -12,26 +12,31 @@
 - name: Install softwarecollections repo
   yum: name=centos-release-scl state=present
 
-- name: install some library packages
+- name: Install softwarecollections packages
+  yum: name={{ item }} state=installed
+  with_items:
+    - devtoolset-3-toolchain
+    - devtoolset-3-perftools
+    - devtoolset-4-toolchain
+    - devtoolset-4-perftools
+    - git19
+
+- name: Install HPX dependency packages
   yum: name={{ item }} state=installed
   with_items:
     - libX11-devel
     - cmake
     - libibverbs-devel
-    - python-pip
     - hdf5-devel
     - hdf5-mpich-devel
     - hdf5-openmpi-devel
     - gperftools-devel
     - libunwind-devel
     - papi-devel
-    - emacs
-    - libibverbs-devel
-    - devtoolset-3-toolchain
-    - devtoolset-3-perftools
-    - devtoolset-4-toolchain
-    - devtoolset-4-perftools
-    - git19
+
+- name: Install Buildbot dependency packages
+  yum: name={{ item }} state=installed
+  with_items:
     - lsb
     - docbook-utils
     - docbook-dtds
@@ -70,27 +75,12 @@
 - name: install conan
   pip: name=conan state=present
 
-- name: rsync the easybuild library
-  synchronize: src=/opt/eb dest=/opt/ delete=yes owner=no group=no
-
-- name: rsync the boost library
-  synchronize: src=/opt/boost dest=/opt/ delete=yes owner=no group=no
-
-- name: rsync the module files
-  synchronize: src=/opt/modules dest=/opt/ delete=yes owner=no group=no
-
 - name: installing intel compiler dependency packages
   yum: name={{ item }} state=installed
   with_items:
     - glibc-devel.i686
     - libstdc++-devel.i686
     - libgcc.i686
-
-- name: Create folder for intel lisense
-  file: path=/opt/intel/licenses/ state=directory
-
-- name: rsync intel licenses
-  synchronize: src=/opt/intel/licenses/ dest=/opt/intel/licenses/ delete=yes
 
 - name: installing CUDA repo
   yum: name=http://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-repo-rhel7-7.5-18.x86_64.rpm state=installed
@@ -105,6 +95,8 @@
   with_items:
     - re2c
 
-- name: rsync the manually compiled library
-  synchronize: src=/opt/mn dest=/opt/ delete=yes owner=no group=no
-
+- name: Install User Requested Packages
+  yum: name={{ item }} state=installed
+  with_items:
+    - emacs
+    - rh-python35

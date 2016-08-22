@@ -9,11 +9,14 @@ Before running this playbook you must:
 
 Use Ansible for the rest:
 	-create file named hosts:
-		[new_n]
-		hostname
+                [compute]
+                hostname
 
-		[rostam]
-		hostname
+                [rostam]
+                hostname
+
+                [login]
+                hostname
 
 	# Update the new nodes:
 	- ansible-playbook -i hosts update_node.yml 

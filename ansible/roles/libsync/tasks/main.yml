@@ -1,0 +1,19 @@
+# Copyright (c) 2015-2016 Alireza Kheirkhahan
+#
+# Distributed under the Boost Software License, Version 1.0. (See accompanying
+# file BOOST_LICENSE_1_0.rst or copy at http://www.boost.org/LICENSE_1_0.txt)
+---
+- name: rsync the easybuild library
+  synchronize: src=/opt/eb dest=/opt/ delete=yes owner=no group=no
+
+- name: rsync the boost library
+  synchronize: src=/opt/boost dest=/opt/ delete=yes owner=no group=no
+
+- name: rsync the module files
+  synchronize: src=/opt/modules dest=/opt/ delete=yes owner=no group=no
+
+- name: rsync intel licenses
+  synchronize: src=/opt/intel dest=/opt/ delete=yes owner=no group=no
+
+- name: rsync the manually compiled library
+  synchronize: src=/opt/mn dest=/opt/ delete=yes owner=no group=no

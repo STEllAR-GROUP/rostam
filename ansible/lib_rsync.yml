@@ -6,19 +6,5 @@
 ---
 - hosts: rostam
 
-  tasks:
-  - name: rsync the easybuild library
-    synchronize: src=/opt/eb dest=/opt/ delete=yes owner=no group=no
-
-  - name: rsync the boost library
-    synchronize: src=/opt/boost dest=/opt/ delete=yes owner=no group=no
-
-  - name: rsync the module files
-    synchronize: src=/opt/modules dest=/opt/ delete=yes owner=no group=no
-
-  - name: rsync intel licenses
-    synchronize: src=/opt/intel/licenses/ dest=/opt/intel/licenses/ delete=yes
-
-  - name: rsync the manually compiled library
-    synchronize: src=/opt/mn dest=/opt/ delete=yes owner=no group=no
-
+ roles:
+   - libsync

@@ -1,0 +1,24 @@
+# Copyright (c) 2015-2016 Alireza Kheirkhahan
+#
+# Distributed under the Boost Software License, Version 1.0. (See accompanying
+# file BOOST_LICENSE_1_0.rst or copy at http://www.boost.org/LICENSE_1_0.txt)
+#
+---
+- name: mount the nfs file system
+  mount: name=/pkg src=otter:/tools/pkg  fstype=nfs state=mounted
+
+- name: install login node packages
+  yum: name={{ item }} state=installed
+  with_items:
+    - firefox
+
+- name: install google chrome
+  yum: name={{ item }} state=installed
+  with_items:
+    - /pkg/google-chrome-stable_current_x86_64.rpm
+
+- name: unmount the temporary file system
+  mount: name=/pkg/ src=otter:/tools/pkg  fstype=nfs state=unmounted
+
+- name: remove temporary file system from fstab in case Ansible made it permanent
+  mount: name=/pkg/ src=otter:/tools/pkg  fstype=nfs state=absent
