@@ -1,0 +1,70 @@
+# Copyright (c) 2015-2016 Alireza Kheirkhahan
+#
+# Distributed under the Boost Software License, Version 1.0. (See accompanying
+# file BOOST_LICENSE_1_0.rst or copy at http://www.boost.org/LICENSE_1_0.txt)
+#
+---
+- name: mount the nfs file system
+  mount: name=/mnt/ src=otter:/tools/pkg  fstype=nfs state=mounted
+
+- name: install mpss packages
+  yum: name={{ item }} state=installed disable_gpg_check=yes
+  with_items:
+    - /mnt/phi/mpss-3.7.2/glibc2.12pkg-libmicaccesssdk0-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/glibc2.12pkg-libmicaccesssdk-dev-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/glibc2.12pkg-libmicmgmt0-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/glibc2.12pkg-libmicmgmt-dev-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/glibc2.12pkg-libmicmgmt-doc-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/glibc2.12pkg-libodmdebug0-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/glibc2.12pkg-libodmdebug-dev-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/glibc2.12pkg-libsettings0-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/glibc2.12pkg-libsettings-dev-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/glibc2.12pkg-mpss-flash-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/glibc2.12pkg-mpss-memdiag-kernel-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/glibc2.12pkg-mpss-rasmm-kernel-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/intel-composerxe-compat-k1om-3.7.2-1.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/libscif0-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/libscif-dev-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/libscif-doc-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/mpss-boot-files-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/mpss-coi-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/mpss-coi-dev-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/mpss-coi-doc-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/mpss-core-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/mpss-core-dev-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/mpss-daemon-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/mpss-daemon-dev-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/mpss-eclipse-cdt-mpm-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/mpss-license-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/mpss-miccheck-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/mpss-miccheck-bin-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/mpss-micmgmt-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/mpss-micmgmt-doc-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/mpss-micmgmt-python-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/mpss-micsmc-gui-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/mpss-modules-headers-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/mpss-mpm-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/mpss-mpm-doc-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/mpss-myo-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/mpss-myo-dev-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/mpss-myo-doc-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/mpss-offload-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/mpss-offload-dev-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/mpss-sciftutorials-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/mpss-sciftutorials-doc-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/mpss-sdk-k1om-3.7.2-1.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/mpss-sysmgmt-micdiagnostic-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/mpss-sysmgmt-micras-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/mpss-sysmgmt-python-3.7.2-1.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/netperf-2.6.0-r0.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/netperf-doc-2.6.0-r0.glibc2.12.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/modules/mpss-modules-3.10.0-327.28.3.el7.x86_64-3.7.2-1.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/modules/mpss-modules-dev-3.10.0-327.28.3.el7.x86_64-3.7.2-1.x86_64.rpm
+
+- name: unmount the temporary file system
+  mount: name=/mnt/ src=otter:/tools/pkg  fstype=nfs state=unmounted
+
+- name: remove temporary file system from fstab in case Ansible made it permanent
+  mount: name=/mnt/ src=otter:/tools/pkg  fstype=nfs state=absent
+
+

@@ -100,3 +100,5 @@
   with_items:
     - emacs
     - rh-python35
+    - htop
+    - bash-completion-extras
