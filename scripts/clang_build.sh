@@ -7,12 +7,12 @@
 
 usage()
 {
-    echo "Usage: $0 -p install directory -v version [args]"
+    echo "Usage: $0 -p install directory -v version [args] "
     echo
-    echo "This script downloads and builds GCC."
+    echo "This script downloads and builds llvm/clang."
     echo
     echo "Options:"
-    echo "  -p    Prefix: the directory where gcc should be installed."
+    echo "  -p    Prefix: the directory where clang should be installed."
     echo "  -v    Version of Boost to build (format: X.Y.Z)"
     echo "  -t    Number of threads to use while building [default: 4]"
     echo "  -b    The build directory [default: /dev/shm]"
