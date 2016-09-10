@@ -102,3 +102,4 @@
     - rh-python35
     - htop
     - bash-completion-extras
+    - scons
