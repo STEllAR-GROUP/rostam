@@ -85,10 +85,13 @@
 - name: installing CUDA repo
   yum: name=http://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-repo-rhel7-7.5-18.x86_64.rpm state=installed
 
-- name: install CUDA drivers
+- name: install CUDA drivers and libraries
   yum: name={{ item }} state=installed
   with_items:
     - cuda-drivers
+    - cuda
+    - cuda-7-5
+    - cuda-7-0
 
 - name: install ninja dependencies
   yum: name={{ item }} state=installed
