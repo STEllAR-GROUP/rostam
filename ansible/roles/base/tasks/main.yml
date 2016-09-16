@@ -21,6 +21,9 @@
 - name: Copy soduers config file
   copy: src=/tools/rostam/config/sudoers dest=/etc/
 
+- name: Copy sshd config file
+  copy: src=/tools/rostam/config/sshd_config dest=/etc/ssh/
+
 - name: Install epel
   yum: name=epel-release state=present
 
