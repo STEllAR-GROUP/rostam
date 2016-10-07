@@ -23,3 +23,21 @@
 
 - name: remove temporary file system from fstab in case Ansible made it permanent
   mount: name=/pkg/ src=otter:/tools/pkg  fstype=nfs state=absent
+
+- name: copy ssh_host_ecdsa_key
+  copy: src=/tools/login_key/ssh_host_ecdsa_key dest=/etc/ssh/ssh_host_ecdsa_key owner=root group=ssh_keys mode=640
+
+- name: copy ssh_host_ecdsa_key.pub
+  copy: src=/tools/login_key/ssh_host_ecdsa_key.pub dest=/etc/ssh/ssh_host_ecdsa_key.pub owner=root group=root mode=644
+
+- name: copy ssh_host_ed25519_key
+  copy: src=/tools/login_key/ssh_host_ed25519_key dest=/etc/ssh/ssh_host_ed25519_key owner=root group=ssh_keys mode=640
+
+- name: copy ssh_host_ed25519_key.pub
+  copy: src=/tools/login_key/ssh_host_ed25519_key.pub dest=/etc/ssh/ssh_host_ed25519_key.pub owner=root group=root mode=644
+
+- name: copy ssh_host_rsa_key
+  copy: src=/tools/login_key/ssh_host_rsa_key dest=/etc/ssh/ssh_host_rsa_key owner=root group=ssh_keys mode=640
+
+- name: copy ssh_host_rsa_key.pub
+  copy: src=/tools/login_key/ssh_host_rsa_key.pub dest=/etc/ssh/ssh_host_rsa_key.pub owner=root group=root mode=644
