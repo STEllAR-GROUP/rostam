@@ -58,8 +58,8 @@
     - /mnt/phi/mpss-3.7.2/mpss-sysmgmt-python-3.7.2-1.glibc2.12.x86_64.rpm
     - /mnt/phi/mpss-3.7.2/netperf-2.6.0-r0.glibc2.12.x86_64.rpm
     - /mnt/phi/mpss-3.7.2/netperf-doc-2.6.0-r0.glibc2.12.x86_64.rpm
-    - /mnt/phi/mpss-3.7.2/modules/mpss-modules-3.10.0-327.28.3.el7.x86_64-3.7.2-1.x86_64.rpm
-    - /mnt/phi/mpss-3.7.2/modules/mpss-modules-dev-3.10.0-327.28.3.el7.x86_64-3.7.2-1.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/modules/mpss-modules-3.10.0-327.36.1.el7.x86_64-3.7.2-1.x86_64.rpm
+    - /mnt/phi/mpss-3.7.2/modules/mpss-modules-dev-3.10.0-327.36.1.el7.x86_64-3.7.2-1.x86_64.rpm
 
 - name: unmount the temporary file system
   mount: name=/mnt/ src=otter:/tools/pkg  fstype=nfs state=unmounted
