@@ -90,6 +90,7 @@
   with_items:
     - cuda-drivers
     - cuda
+    - cuda-8-0
     - cuda-7-5
     - cuda-7-0
 
