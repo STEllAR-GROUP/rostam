@@ -16,3 +16,6 @@ if [ ! -f $HOME/.ssh/id_rsa ]; then
     cat $HOME/.ssh/id_rsa.pub >> $HOME/.ssh/authorized_keys
     chmod 0600 $HOME/.ssh/authorized_keys
 fi
+
+export HISTSIZE=10000
+export HISTFILESIZE=10000
