@@ -25,10 +25,10 @@
 - name: install slurm packages
   yum: name={{ item }} state=installed
   with_items:
-    - /pkg/slurm/15.08.8/slurm-15.08.8-1.el7.centos.x86_64.rpm
-    - /pkg/slurm/15.08.8/slurm-plugins-15.08.8-1.el7.centos.x86_64.rpm
-    - /pkg/slurm/15.08.8/slurm-munge-15.08.8-1.el7.centos.x86_64.rpm
-    - /pkg/slurm/15.08.8/slurm-pam_slurm-15.08.8-1.el7.centos.x86_64.rpm
+    - /pkg/slurm/16.05.5/slurm-16.05.5-1.el7.centos.x86_64.rpm
+    - /pkg/slurm/16.05.5/slurm-plugins-16.05.5-1.el7.centos.x86_64.rpm
+    - /pkg/slurm/16.05.5/slurm-munge-16.05.5-1.el7.centos.x86_64.rpm
+    - /pkg/slurm/16.05.5/slurm-pam_slurm-16.05.5-1.el7.centos.x86_64.rpm
 
 - name: unmount the temporary file system
   mount: name=/pkg/ src=otter:/tools/pkg  fstype=nfs state=unmounted
