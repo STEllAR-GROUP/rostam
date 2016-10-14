@@ -15,4 +15,5 @@
     - library
     - libsync
     - phi_lib
+    - buildbot
     - compute_node
