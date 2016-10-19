@@ -1,4 +1,5 @@
 # Copyright (c) 2015-2016 Alireza Kheirkhahan
+# Copyright (c) 2016 Parsa Amini
 #
 # Distributed under the Boost Software License, Version 1.0. (See accompanying
 # file BOOST_LICENSE_1_0.rst or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -19,3 +20,19 @@ fi
 
 export HISTSIZE=10000
 export HISTFILESIZE=10000
+
+# Interactive developer jobs
+# Written by Parsa
+function idev() {                                                                 
+    local nodes="1"                                                               
+    if [[ "$(sinfo -h -o "%P")" =~ .*^$1$.* ]]; then                              
+        local partition="$1"                                                      
+        shift                                                                     
+    fi                                                                            
+    if [[ "$1" =~ [0-9]+ ]]; then                                                 
+        nodes="$1"                                                                
+        shift                                                                     
+    fi                                                                            
+    echo "Starting interactive job, ${partition+Partition: \"${partition}\", }Number of nodes: \"${nodes}\""
+    srun ${partition+-p} $partition -N ${nodes} --pty "/bin/bash" -l "${@}"      
+}
