@@ -51,6 +51,9 @@
 - name: Copy config file to the target node
   copy: src=/etc/slurm/slurm.conf dest=/etc/slurm/slurm.conf
 
+- name: Copy Slurm PAM config file
+  copy: src=/tools/rostam/config/slurm.pam dest=/etc/pam.d/slurm
+
 # No need for this, /etc/init.d/slurm will start slurmd if it is compute node
 # Make sure slurm is on on chkconfig --list
 #- name: Enable slurmd service on compute node
