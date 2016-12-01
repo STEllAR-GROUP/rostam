@@ -261,9 +261,9 @@ echo "set root $DIRECTORY/debug " >> $MODULE_DIRECTORY/boost/$MODULE_WORD-debug
 echo "" >> $MODULE_DIRECTORY/boost/$MODULE_WORD-debug 
 echo "conflict boost" >> $MODULE_DIRECTORY/boost/$MODULE_WORD-debug 
 echo "" >> $MODULE_DIRECTORY/boost/$MODULE_WORD-debug 
-echo "prepend-path    CPATH           \$root" >> $MODULE_DIRECTORY/boost/$MODULE_WORD-debug 
+echo "#prepend-path    CPATH           \$root" >> $MODULE_DIRECTORY/boost/$MODULE_WORD-debug 
 echo "prepend-path    LD_LIBRARY_PATH         \$root/lib" >> $MODULE_DIRECTORY/boost/$MODULE_WORD-debug 
-echo "prepend-path    LIBRARY_PATH            \$root/lib" >> $MODULE_DIRECTORY/boost/$MODULE_WORD-debug 
+echo "#prepend-path    LIBRARY_PATH            \$root/lib" >> $MODULE_DIRECTORY/boost/$MODULE_WORD-debug 
 echo "setenv  BOOST_ROOT            \"\$root\"" >> $MODULE_DIRECTORY/boost/$MODULE_WORD-debug 
 echo "setenv  BOOST_VERSION          \"$DOT_VERSION\"" >> $MODULE_DIRECTORY/boost/$MODULE_WORD-debug 
 
