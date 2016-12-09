@@ -1,0 +1,17 @@
+# Copyright (c) 2015-2016 Alireza Kheirkhahan
+#
+# Distributed under the Boost Software License, Version 1.0. (See accompanying
+# file BOOST_LICENSE_1_0.rst or copy at http://www.boost.org/LICENSE_1_0.txt)
+#
+---
+- name: install infiniband packages
+  yum: name={{ item }} state=installed disable_gpg_check=yes
+  with_items:
+    - "@Infiniband Support"
+    - infinipath-psm
+    - infiniband-diags 
+    - perftest 
+    - qperf
+    
+- name: copy rmda limits config file
+  copy: src=/tools/rostam/config/rdma_limits dest=/etc/security/limits.d/rdma.conf

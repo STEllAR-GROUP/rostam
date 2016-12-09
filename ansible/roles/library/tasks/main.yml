@@ -107,3 +107,16 @@
     - htop
     - bash-completion-extras
     - scons
+    - gdal
+    - gdal-devel
+    - jemalloc
+    - jemalloc-devel
+    - ptscotch-mpich
+    - ptscotch-mpich-devel
+    - ptscotch-mpich-devel-parmetis
+    - ptscotch-openmpi
+    - ptscotch-openmpi-devel
+    - ptscotch-openmpi-devel-parmetis
+    - scotch-devel
+    - scotch-doc
+    - scotch
