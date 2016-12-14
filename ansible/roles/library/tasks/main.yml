@@ -33,6 +33,10 @@
     - gperftools-devel
     - libunwind-devel
     - papi-devel
+    - openmpi-devel
+    - mpich-devel
+    - mvapich2-2.2
+    - mvapich2-2.2-devel
 
 - name: Install Buildbot dependency packages
   yum: name={{ item }} state=installed
