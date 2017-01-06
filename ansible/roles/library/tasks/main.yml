@@ -19,6 +19,8 @@
     - devtoolset-3-perftools
     - devtoolset-4-toolchain
     - devtoolset-4-perftools
+    - devtoolset-6-toolchain
+    - devtoolset-6-perftools
     - git19
 
 - name: Install HPX dependency packages
