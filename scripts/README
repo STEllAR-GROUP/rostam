@@ -1,0 +1,19 @@
+gcc:
+	$ gcc_build.sh -v 6.3.0
+
+clang:
+	$ module load cmake/3.6.2
+        $ clang_build.sh -v 3.9.1
+
+boost:
+    with gcc:
+	$ cd /opt/boost
+	$ mkdir 1.63.0-gcc6.3.0
+	$ module load gcc/6.3.0
+	$ /tools/rostam/scripts/build_boost.sh -v 1.63.0 -d 1.63.0-gcc6.3.0 -b 'cxxflags=-mtune=generic'
+
+    with clang:
+	$ cd /opt/boost
+        $ mkdir 1.63.0-clang3.9.1
+        $ module load clang/3.9.1
+	$ /tools/rostam/scripts/build_boost.sh -v 1.63.0 -d 1.63.0-clang3.9.1 -c clang -b 'toolset=clang cxxflags=-stdlib=libc++ linkflags=-stdlib=libc++'

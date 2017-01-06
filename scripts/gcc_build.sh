@@ -12,8 +12,8 @@ usage()
     echo "This script downloads and builds GCC."
     echo
     echo "Options:"
-    echo "  -p    Prefix: the directory where gcc should be installed."
-    echo "  -v    Version of Boost to build (format: X.Y.Z)"
+    echo "  -p    Prefix: the directory where gcc should be installed [default: /opt/mn/gcc/<version>]"
+    echo "  -v    Version of GCC to build (format: X.Y.Z)"
     echo "  -t    Number of threads to use while building [default: 4]"
     echo "  -b    The build directory [default: /dev/shm]"
     echo "  -m    The Module directory [default: /opt/modules]"

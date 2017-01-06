@@ -12,8 +12,8 @@ usage()
     echo "This script downloads and builds llvm/clang."
     echo
     echo "Options:"
-    echo "  -p    Prefix: the directory where clang should be installed."
-    echo "  -v    Version of Boost to build (format: X.Y.Z)"
+    echo "  -p    Prefix: the directory where clang should be installed [default: /opt/mn/clang/<version>]"
+    echo "  -v    Version of llvm/clang to build (format: X.Y.Z)"
     echo "  -t    Number of threads to use while building [default: 4]"
     echo "  -b    The build directory [default: /dev/shm]"
     echo "  -m    The Module directory [default: /opt/modules]"
