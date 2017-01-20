@@ -26,6 +26,14 @@ Use Ansible for the rest:
 	# if it is loging node:
 	- ansible-playbook -i hosts login_node.yml
 
+	# if the node has Xeon Phi Co-Processor
+	- add node under [phi] group in hosts
+	- ansible-playbook -i hosts phi_service.yml
+
+	# if the node has infinand card
+	- add node under [ib] group in hosts
+	- ansible-playbook -i hosts ib_config.yml
+
 	# Copy the updated /etc/slurm/slurm.conf across the all nodes:
 	ansible rostam -m copy -a "src=/etc/slurm/slurm.conf dest=/etc/slurm/slurm.conf"
 
