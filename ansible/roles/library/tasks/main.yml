@@ -56,6 +56,18 @@
     - clang-devel
     - llvm-devel
     - llvm-doc
+    - lldb
+    - lldb-devel
+
+- name: installing clang requirements
+  yum: name={{ item }} state=installed
+  with_items:
+    - ncurses-devel
+    - swig
+    - libedit
+    - libedit-devel
+    - libxml2-devel
+    - python-devel
 
 - name: installing boost packages
   yum: name={{ item }} state=installed
