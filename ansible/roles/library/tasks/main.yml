@@ -37,6 +37,7 @@
     - papi-devel
     - openmpi-devel
     - mpich-devel
+    - mpich-3.2-devel
     - mvapich2-2.2
     - mvapich2-2.2-devel
 
