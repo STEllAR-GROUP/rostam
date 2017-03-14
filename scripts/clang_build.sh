@@ -31,6 +31,15 @@ while getopts "ht:p:v:b:m:" OPTION; do case $OPTION in
         usage
         exit 0
         ;;
+    t)
+	if [[ $OPTARG =~ ^[0-9]+$ ]]; then
+            THREADS=$OPTARG
+        else
+            echo "ERROR: -t argument was invalid"; echo
+            usage
+            exit 1
+        fi
+        ;;
     p)
 	PREFIX=$OPTARG 
         ;;
