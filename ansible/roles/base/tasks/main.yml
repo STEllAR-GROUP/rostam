@@ -44,6 +44,13 @@
     - python-twisted-web
     - python-twisted-words
 
+- name: install java libraris
+  yum: name={{ item }} state=installed
+  with_items:
+    - java-1.8.0-openjdk
+    - java-1.8.0-openjdk-devel
+    - java-1.8.0-openjdk-headless
+
 - name: insalling some base packages
   yum: name={{ item }} state=installed
   with_items:
