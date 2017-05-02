@@ -10,60 +10,60 @@
 - name: install mpss packages
   yum: name={{ item }} state=installed disable_gpg_check=yes
   with_items:
-    - /pkg/phi/mpss-3.8.1/glibc2.12pkg-libmicaccesssdk0-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/glibc2.12pkg-libmicaccesssdk-dev-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/glibc2.12pkg-libmicmgmt0-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/glibc2.12pkg-libmicmgmt-dev-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/glibc2.12pkg-libmicmgmt-doc-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/glibc2.12pkg-libodmdebug0-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/glibc2.12pkg-libodmdebug-dev-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/glibc2.12pkg-libsettings0-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/glibc2.12pkg-libsettings-dev-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/glibc2.12pkg-mpss-flash-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/glibc2.12pkg-mpss-memdiag-kernel-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/glibc2.12pkg-mpss-rasmm-kernel-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/intel-composerxe-compat-k1om-3.8.1-1.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/libscif0-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/libscif-dev-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/libscif-doc-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/mpss-boot-files-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/mpss-coi-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/mpss-coi-dev-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/mpss-coi-doc-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/mpss-core-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/mpss-core-dev-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/mpss-daemon-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/mpss-daemon-dev-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/mpss-eclipse-cdt-mpm-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/mpss-license-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/mpss-miccheck-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/mpss-miccheck-bin-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/mpss-micmgmt-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/mpss-micmgmt-doc-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/mpss-micmgmt-python-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/mpss-micsmc-gui-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/mpss-modules-headers-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/mpss-mpm-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/mpss-mpm-doc-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/mpss-myo-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/mpss-myo-dev-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/mpss-myo-doc-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/mpss-offload-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/mpss-offload-dev-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/mpss-sciftutorials-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/mpss-sciftutorials-doc-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/mpss-sdk-k1om-3.8.1-1.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/mpss-sysmgmt-micdiagnostic-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/mpss-sysmgmt-micras-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/mpss-sysmgmt-python-3.8.1-1.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/netperf-2.6.0-r0.glibc2.12.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/netperf-doc-2.6.0-r0.glibc2.12.x86_64.rpm    
+    - /pkg/phi/mpss-3.8.2/glibc2.12pkg-libmicaccesssdk0-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/glibc2.12pkg-libmicaccesssdk-dev-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/glibc2.12pkg-libmicmgmt0-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/glibc2.12pkg-libmicmgmt-dev-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/glibc2.12pkg-libmicmgmt-doc-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/glibc2.12pkg-libodmdebug0-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/glibc2.12pkg-libodmdebug-dev-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/glibc2.12pkg-libsettings0-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/glibc2.12pkg-libsettings-dev-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/glibc2.12pkg-mpss-flash-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/glibc2.12pkg-mpss-memdiag-kernel-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/glibc2.12pkg-mpss-rasmm-kernel-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/intel-composerxe-compat-k1om-3.8.2-1.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/libscif0-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/libscif-dev-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/libscif-doc-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/mpss-boot-files-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/mpss-coi-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/mpss-coi-dev-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/mpss-coi-doc-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/mpss-core-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/mpss-core-dev-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/mpss-daemon-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/mpss-daemon-dev-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/mpss-eclipse-cdt-mpm-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/mpss-license-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/mpss-miccheck-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/mpss-miccheck-bin-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/mpss-micmgmt-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/mpss-micmgmt-doc-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/mpss-micmgmt-python-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/mpss-micsmc-gui-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/mpss-modules-headers-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/mpss-mpm-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/mpss-mpm-doc-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/mpss-myo-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/mpss-myo-dev-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/mpss-myo-doc-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/mpss-offload-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/mpss-offload-dev-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/mpss-sciftutorials-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/mpss-sciftutorials-doc-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/mpss-sdk-k1om-3.8.2-1.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/mpss-sysmgmt-micdiagnostic-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/mpss-sysmgmt-micras-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/mpss-sysmgmt-python-3.8.2-1.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/netperf-2.6.0-r0.glibc2.12.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/netperf-doc-2.6.0-r0.glibc2.12.x86_64.rpm
 
 - name: install mpss drivers
   yum: name={{ item }} state=installed disable_gpg_check=yes
   with_items:
-    - /pkg/phi/mpss-3.8.1/modules/mpss-modules-3.10.0-514.10.2.el7.x86_64-3.8.1-1.x86_64.rpm
-    - /pkg/phi/mpss-3.8.1/modules/mpss-modules-dev-3.10.0-514.10.2.el7.x86_64-3.8.1-1.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/modules/mpss-modules-3.10.0-514.16.1.el7.x86_64-3.8.2-1.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/modules/mpss-modules-dev-3.10.0-514.16.1.el7.x86_64-3.8.2-1.x86_64.rpm
 
 - name: unmount the temporary file system
   mount: name=/pkg/ src=otter:/tools/pkg  fstype=nfs state=unmounted
