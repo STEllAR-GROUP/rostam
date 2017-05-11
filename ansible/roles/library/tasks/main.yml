@@ -139,3 +139,7 @@
     - scotch-devel
     - scotch-doc
     - scotch
+    - blas-devel 
+    - lapack-devel 
+    - lapack64-devel 
+    - blas64-devel
