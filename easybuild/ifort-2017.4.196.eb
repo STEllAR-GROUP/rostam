@@ -1,0 +1,30 @@
+# Copyright (c) 2017 Alireza Kheirkhahan
+#  
+# Distributed under the Boost Software License, Version 1.0. (See accompanying
+# file BOOST_LICENSE_1_0.rst or copy at http://www.boost.org/LICENSE_1_0.txt)
+#
+# This is an easyconfig file for EasyBuild, see http://hpcugent.github.io/easybuild
+
+name = 'ifort'
+version = '2017.4.196'
+
+homepage = 'http://software.intel.com/en-us/intel-compilers/'
+description = "Fortran compiler from Intel"
+
+toolchain = {'name': 'dummy', 'version': 'dummy'}
+
+sources = ['parallel_studio_xe_%(version_major)s_update%(version_minor)s_composer_edition_for_fortran.tgz']
+
+# list of regex for components to install
+# full list of components can be obtained from pset/mediaconfig.xml in unpacked sources
+# cfr. https://software.intel.com/en-us/articles/intel-composer-xe-2015-silent-installation-guide
+#components = ['intel-comp', 'intel-fcomp', 'intel-ifort', 'intel-openmp', 'intel-ipsf?_', 'intel-gdb(?!.*mic)']
+
+dontcreateinstalldir = 'True'
+
+# license file
+#import os
+#license_file = os.path.join(os.getenv('HOME'), "licenses", "intel", "license.lic")
+license_file = '/opt/intel/licenses/'
+
+moduleclass = 'compiler'
