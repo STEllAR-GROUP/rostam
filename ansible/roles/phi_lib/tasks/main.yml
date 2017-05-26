@@ -62,8 +62,8 @@
 - name: install mpss drivers
   yum: name={{ item }} state=installed disable_gpg_check=yes
   with_items:
-    - /pkg/phi/mpss-3.8.2/modules/mpss-modules-3.10.0-514.16.1.el7.x86_64-3.8.2-1.x86_64.rpm
-    - /pkg/phi/mpss-3.8.2/modules/mpss-modules-dev-3.10.0-514.16.1.el7.x86_64-3.8.2-1.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/modules/mpss-modules-3.10.0-514.21.1.el7.x86_64-3.8.2-1.x86_64.rpm
+    - /pkg/phi/mpss-3.8.2/modules/mpss-modules-dev-3.10.0-514.21.1.el7.x86_64-3.8.2-1.x86_64.rpm
 
 - name: unmount the temporary file system
   mount: name=/pkg/ src=otter:/tools/pkg  fstype=nfs state=unmounted
