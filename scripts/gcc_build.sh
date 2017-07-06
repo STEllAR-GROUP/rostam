@@ -111,7 +111,7 @@ contrib/download_prerequisites
 --enable-linker-build-id \
 --enable-gnu-indirect-function \
 --with-tune=generic \
---with-arch_32=x86-64 \
+--with-arch_32=i686 \
 --build=x86_64-redhat-linux 
 
 make -j${THREADS}
