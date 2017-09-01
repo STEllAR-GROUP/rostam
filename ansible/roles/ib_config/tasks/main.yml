@@ -12,6 +12,7 @@
     - infiniband-diags 
     - perftest 
     - qperf
+    - libibmad-devel
     
 - name: copy rmda limits config file
   copy: src=/tools/rostam/config/rdma_limits dest=/etc/security/limits.d/rdma.conf
