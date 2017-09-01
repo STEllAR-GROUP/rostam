@@ -80,11 +80,11 @@ cd $BUILD_DIRECTORY
 mkdir gcc-$VERSION
 cd gcc-$VERSION
 
-wget http://ftpmirror.gnu.org/gcc/gcc-$VERSION/gcc-$VERSION.tar.bz2
+wget http://ftpmirror.gnu.org/gcc/gcc-$VERSION/gcc-$VERSION.tar.gz
     if ! [[ $? == "0" ]]; then echo "ERROR: Unable to download GCC"; error; fi
 
-tar --no-same-owner -xf gcc-$VERSION.tar.bz2
-if ! [[ $? == "0" ]]; then echo "ERROR: Unable to unpack `pwd`/gcc-$VERSION.tar.bz2"; error; fi
+tar --no-same-owner -xf gcc-$VERSION.tar.gz
+if ! [[ $? == "0" ]]; then echo "ERROR: Unable to unpack `pwd`/gcc-$VERSION.tar.gz"; error; fi
 
 mv gcc-$VERSION source
 cd source
