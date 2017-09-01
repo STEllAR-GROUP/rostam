@@ -69,6 +69,7 @@
     - libedit-devel
     - libxml2-devel
     - python-devel
+    - libatomic
 
 - name: installing boost packages
   yum: name={{ item }} state=installed
