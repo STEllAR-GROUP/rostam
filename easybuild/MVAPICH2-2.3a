@@ -1,0 +1,23 @@
+# Copyright (c) 2017 Alireza Kheirkhahan
+# 
+# Distributed under the Boost Software License, Version 1.0. (See accompanying
+# file BOOST_LICENSE_1_0.rst or copy at http://www.boost.org/LICENSE_1_0.txt)
+
+# This is an easyconfig file for EasyBuild, see http://hpcugent.github.io/easybuild
+
+name = 'MVAPICH2'
+version = '2.3a'
+
+homepage = 'http://mvapich.cse.ohio-state.edu/overview/mvapich2/'
+description = "This is an MPI 3.0 implementation.  It is based on MPICH2 and MVICH."
+
+toolchain = {'name': 'dummy', 'version': ''}
+
+source_urls = ['http://mvapich.cse.ohio-state.edu/download/mvapich/mv2/']
+sources = [SOURCELOWER_TAR_GZ]
+
+# Let's store the checksum in order to be sure it doesn't suddenly change
+checksums = ['87c3fbf8a755b53806fa9ecb21453445']
+#
+
+moduleclass = 'mpi'
