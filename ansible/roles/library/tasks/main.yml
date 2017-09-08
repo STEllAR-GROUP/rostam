@@ -70,6 +70,9 @@
     - libxml2-devel
     - python-devel
     - libatomic
+    - devtoolset-3-libatomic-devel
+    - devtoolset-4-libatomic-devel
+    - devtoolset-6-libatomic-devel
 
 - name: installing boost packages
   yum: name={{ item }} state=installed
