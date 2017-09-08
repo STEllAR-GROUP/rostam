@@ -147,3 +147,20 @@
     - lapack-devel 
     - lapack64-devel 
     - blas64-devel
+
+- name: Install Prerequisites for Phylanx
+  yum: name={{ item }} state=installed
+  with_items:
+    - catch-devel
+    - eigen3-devel
+    - eigen3-doc
+    - python34
+    - python34-devel
+    - python34-pytest
+    - python34-pip
+
+- name: update pip 3.4
+  pip: executable=pip3.4 name=pip state=latest
+
+- name: Install pytest for python 3.4
+  pip: executable=pip3.4 name=pytest state=latest
