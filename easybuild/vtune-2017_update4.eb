@@ -1,0 +1,21 @@
+# Copyright (c) 2017 Alireza Kheirkhahan
+#  
+# Distributed under the Boost Software License, Version 1.0. (See accompanying
+# file BOOST_LICENSE_1_0.rst or copy at http://www.boost.org/LICENSE_1_0.txt)
+#
+# This is an easyconfig file for EasyBuild, see http://hpcugent.github.io/easybuild
+
+name = 'VTune'
+version = '2017_update4'
+
+homepage = 'http://software.intel.com/en-us/intel-vtune-amplifier-xe'
+description = "Intel VTune Amplifier XE is the premier performance profiler for C, C++, C#, Fortran, Assembly and Java."
+
+toolchain = {'name': 'dummy', 'version': ''}
+
+sources = ['vtune_amplifier_xe_%(version)s.tar.gz']
+
+# license file
+license_file = '/opt/intel/licenses/'
+
+moduleclass = 'tools'
