@@ -1,0 +1,33 @@
+# Copyright (c) 2017 Alireza Kheirkhahan
+#
+# Distributed under the Boost Software License, Version 1.0. (See accompanying
+# file BOOST_LICENSE_1_0.rst or copy at http://www.boost.org/LICENSE_1_0.txt)
+
+---
+- hosts: rostam
+
+  tasks:
+  - name: copy orangefs library to clients
+    synchronize: src=/opt/mn/orangefs dest=/opt/mn/ delete=yes owner=no group=no
+
+  - name: copy orangefs_ld.conf
+    copy: src=/tools/rostam/config/orangefs_ld.conf dest=/etc/ld.so.conf.d/ owner=root group=root mode=644
+  - name: configure dynamic linker run-time bindings
+    command: ldconfig
+
+  - name: rsync the module files
+    synchronize: src=/opt/modules dest=/opt/ delete=yes owner=no group=no
+
+  - name: Install pvfs kernel module
+    command: insmod /opt/mn/orangefs/lib/modules/3.10.0-693.5.2.el7.x86_64/kernel/fs/pvfs2/pvfs2.ko
+
+  - name: Starting orangefs client service
+    command: /opt/mn/orangefs/sbin/pvfs2-client -p /opt/mn/orangefs/sbin/pvfs2-client-core
+
+  - name: Creating /orangefs as mount point
+    file: path=/orangefs state=directory owner=root group=root mode=777
+
+  - name: mounting orangefs file system
+    mount: name=/orangefs src=tcp://beowulf11:3334/orangefs fstype=pvfs2 state=mounted
+ 
+
