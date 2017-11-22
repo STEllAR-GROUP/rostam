@@ -165,3 +165,9 @@
 
 - name: Install pytest for python 3.4
   pip: executable=pip3.4 name=pytest state=latest
+
+- name: Install dependencies for dell software
+  yum: name={{ item }} state=installed
+  with_items:
+    - compat-libstdc++-33.i686
+    - libxml2.i686
