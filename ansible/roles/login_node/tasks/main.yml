@@ -12,6 +12,7 @@
   with_items:
     - firefox
     - icedtea-web
+    - screen
 
 - name: install google chrome
   yum: name={{ item }} state=installed
