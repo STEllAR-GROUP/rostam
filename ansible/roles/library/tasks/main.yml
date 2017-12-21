@@ -148,6 +148,7 @@
     - lapack-devel 
     - lapack64-devel 
     - blas64-devel
+    - libpng-devel
 
 - name: Install Prerequisites for Phylanx
   yum: name={{ item }} state=installed
