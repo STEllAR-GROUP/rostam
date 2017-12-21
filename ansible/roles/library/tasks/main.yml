@@ -21,6 +21,8 @@
     - devtoolset-4-perftools
     - devtoolset-6-toolchain
     - devtoolset-6-perftools
+    - devtoolset-7-toolchain
+    - devtoolset-7-perftools
     - git19
 
 - name: Install HPX dependency packages
@@ -73,6 +75,7 @@
     - devtoolset-3-libatomic-devel
     - devtoolset-4-libatomic-devel
     - devtoolset-6-libatomic-devel
+    - devtoolset-7-libatomic-devel
 
 - name: installing boost packages
   yum: name={{ item }} state=installed
