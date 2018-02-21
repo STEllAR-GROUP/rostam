@@ -154,6 +154,6 @@ echo "prepend-path    LIBRARY_PATH            \$root/lib" >> $MODULE_DIRECTORY/g
 echo "prepend-path    LIBRARY_PATH            \$root/lib64" >> $MODULE_DIRECTORY/gcc/$VERSION
 echo "prepend-path    MANPATH         \$root/share/man" >> $MODULE_DIRECTORY/gcc/$VERSION
 echo "prepend-path    PATH            \$root/bin" >> $MODULE_DIRECTORY/gcc/$VERSION
-echo "setenv  ROOTGCC         \"\$root\"" >> $MODULE_DIRECTORY/gcc/$VERSION
-echo "setenv  VERSIONGCC              \"$VERSION\"" >> $MODULE_DIRECTORY/gcc/$VERSION
+echo "setenv	      CC      \$root/bin/gcc" >> $MODULE_DIRECTORY/gcc/$VERSION
+echo "setenv  	      CXX     \$root/bin/g++" >> $MODULE_DIRECTORY/gcc/$VERSION
 
