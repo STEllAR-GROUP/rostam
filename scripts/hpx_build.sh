@@ -107,7 +107,7 @@ error()
     exit 1
 }
 
-if [ -z "$MODULE_WORD" ]; then MODULE_WORD=master-$BUILD_TYPE-$COMPILER$VERSION; fi
+if [ -z "$MODULE_WORD" ]; then MODULE_WORD=master-$COMPILER-$BUILD_TYPE; fi
 if [ -z "$PREFIX" ]; then PREFIX=/opt/hpx/$MODULE_WORD; fi
 if [ -z "$BUILD_DIRECTORY" ]; then BUILD_DIRECTORY=/dev/shm/hpx/$MODULE_WORD; fi
 
@@ -200,4 +200,4 @@ echo "" >> $MODULE_FILE
 echo "setenv  HPX_ROOT          \$root ">> $MODULE_FILE
 echo "setenv  HPX_DIR           \$root /lib/cmake/HPX/" >> $MODULE_FILE
 
-echo "Module filed installed in $MODULE_FILE"
+echo "Module file installed in $MODULE_FILE"
