@@ -22,3 +22,4 @@
 /opt/boost/modules              # Modules for boost libraries
 /opt/modules                    # Modules for manually compiled libraries
 /opt/eb/modules/all             # Modules generate by easybuild
+/opt/hpx/modules                # Modules for hpx builds
