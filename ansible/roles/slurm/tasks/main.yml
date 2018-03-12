@@ -29,6 +29,16 @@
     - /pkg/slurm/17.02.1-2/slurm-plugins-17.02.1-2.el7.centos.x86_64.rpm
     - /pkg/slurm/17.02.1-2/slurm-munge-17.02.1-2.el7.centos.x86_64.rpm
     - /pkg/slurm/17.02.1-2/slurm-pam_slurm-17.02.1-2.el7.centos.x86_64.rpm
+  when: ansible_architecture == "x86_64"
+
+- name: install slurm packages
+  yum: name={{ item }} state=installed
+  with_items:
+    - /pkg/slurm/17.02.1-2-ppc64le/slurm-17.02.1-2.el7.centos.ppc64le.rpm
+    - /pkg/slurm/17.02.1-2-ppc64le/slurm-plugins-17.02.1-2.el7.centos.ppc64le.rpm
+    - /pkg/slurm/17.02.1-2-ppc64le/slurm-munge-17.02.1-2.el7.centos.ppc64le.rpm
+    - /pkg/slurm/17.02.1-2-ppc64le/slurm-pam_slurm-17.02.1-2.el7.centos.ppc64le.rpm
+  when: ansible_architecture == "ppc64le"
 
 - name: unmount the temporary file system
   mount: name=/pkg/ src=otter:/tools/pkg  fstype=nfs state=unmounted
