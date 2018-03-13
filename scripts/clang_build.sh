@@ -20,8 +20,8 @@ usage()
 }
 
 BUILD_DIRECTORY=/dev/shm
-VERSION=3.8.0
-THREADS=4
+VERSION=6.0.0
+THREADS=8
 MODULE_DIRECTORY=/opt/modules
 
 ##########################################################
@@ -109,7 +109,16 @@ wget http://llvm.org/releases/$VERSION/openmp-$VERSION.src.tar.xz
 wget http://llvm.org/releases/$VERSION/test-suite-$VERSION.src.tar.xz
     if ! [[ $? == "0" ]]; then echo "ERROR: Unable to download llvm"; error; fi
 
+# LLD
+wget http://llvm.org/releases/$VERSION/lld-$VERSION.src.tar.xz
+    if ! [[ $? == "0" ]]; then echo "ERROR: Unable to download llvm"; error; fi
+
+# LLDB
+wget http://llvm.org/releases/$VERSION/lldb-$VERSION.src.tar.xz
+    if ! [[ $? == "0" ]]; then echo "ERROR: Unable to download llvm"; error; fi
+
 # Extracting the Source:
+echo "Unpacking the source files ..."
 
 tar --no-same-owner -xf llvm-$VERSION.src.tar.xz
 if ! [[ $? == "0" ]]; then echo "ERROR: Unable to unpack `pwd`/llvm-$VERSION.src.tar.xz"; error; fi
@@ -119,6 +128,12 @@ cd llvm/tools/
 tar --no-same-owner -xf ../../cfe-$VERSION.src.tar.xz
 if ! [[ $? == "0" ]]; then echo "ERROR: Unable to unpack `pwd`/cfe-$VERSION.src.tar.xz"; error; fi
 mv cfe-$VERSION.src/ clang
+
+tar --no-same-owner -xf ../../lld-$VERSION.src.tar.xz
+if ! [[ $? == "0" ]]; then echo "ERROR: Unable to unpack `pwd`/lld-$VERSION.src.tar.xz"; error; fi
+
+tar --no-same-owner -xf ../../lldb-$VERSION.src.tar.xz
+if ! [[ $? == "0" ]]; then echo "ERROR: Unable to unpack `pwd`/lldb-$VERSION.src.tar.xz"; error; fi
 
 cd ../projects/
 
@@ -146,7 +161,7 @@ cd $BUILD_DIRECTORY/clang-$VERSION/llvm
 mkdir build
 cd build
 
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$PREFIX ..
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$PREFIX -DLLDB_DISABLE_PYTHON=1 ..
 
 make -j${THREADS}
 if ! [[ $? == "0" ]]; then echo "ERROR: failed to build Clang"; error; fi
@@ -177,6 +192,10 @@ echo "set root $PREFIX" >> $MODULE_DIRECTORY/clang/$VERSION
 echo "" >> $MODULE_DIRECTORY/clang/$VERSION
 echo "conflict clang" >> $MODULE_DIRECTORY/clang/$VERSION
 
+echo "if { ![is-loaded binutils/2.28] } {" >> $MODULE_DIRECTORY/clang/$VERSION
+echo "    module load binutils/2.28" >> $MODULE_DIRECTORY/clang/$VERSION
+echo "}" >> $MODULE_DIRECTORY/clang/$VERSION
+
 echo "" >> $MODULE_DIRECTORY/clang/$VERSION
 echo "prepend-path    CPATH           \$root/include" >> $MODULE_DIRECTORY/clang/$VERSION
 echo "prepend-path    LD_LIBRARY_PATH        \$root/lib" >> $MODULE_DIRECTORY/clang/$VERSION
@@ -188,4 +207,4 @@ echo "prepend-path    PATH            \$root/libexec" >> $MODULE_DIRECTORY/clang
 echo "" >> $MODULE_DIRECTORY/clang/$VERSION
 echo "setenv  CC         \$root/bin/clang" >> $MODULE_DIRECTORY/clang/$VERSION
 echo "setenv  CXX        \$root/bin/clang++" >> $MODULE_DIRECTORY/clang/$VERSION
-
+echo "setenv  CXXFLAGS 	 -stdlib=libc++" >> $MODULE_DIRECTORY/clang/$VERSION
