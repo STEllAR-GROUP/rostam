@@ -6,7 +6,6 @@
 # file BOOST_LICENSE_1_0.rst or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 BUILD_SCRIPT=`dirname $0`/hpx_build.sh
-echo $BUILD_SCRIPT
 
 # Build with gcc 7.3.0 and boost 1.66.0 in debug
 $BUILD_SCRIPT -c gcc -v 7.3.0 -b 1.66.0
@@ -15,7 +14,7 @@ $BUILD_SCRIPT -c gcc -v 7.3.0 -b 1.66.0
 $BUILD_SCRIPT -n -c gcc -v 7.3.0 -b 1.66.0 -o release
 
 # Build with clang 5.0.1 and boost 1.66.0 in debug mode and no download
-$BUILD_SCRIPT -n -c clang -v 5.0.1 -b 1.66.0 -f '-DCMAKE_CXX_FLAGS=-stdlib=libc++'
+$BUILD_SCRIPT -n -c clang -v 6.0.0 -b 1.66.0 -f '-DCMAKE_CXX_FLAGS=-stdlib=libc++'
 
 # Build with clang 5.0.1 and boost 1.66.0 in debug mode and no download
-$BUILD_SCRIPT -n -c clang -v 5.0.1 -o release -b 1.66.0 -f '-DCMAKE_CXX_FLAGS=-stdlib=libc++'
+$BUILD_SCRIPT -n -c clang -v 6.0.0 -o release -b 1.66.0 -f '-DCMAKE_CXX_FLAGS=-stdlib=libc++'
