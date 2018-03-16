@@ -13,8 +13,8 @@ $BUILD_SCRIPT -c gcc -v 7.3.0 -b 1.66.0
 # Build with gcc 7.3.0 and boost 1.66.0 in release mode and no download
 $BUILD_SCRIPT -n -c gcc -v 7.3.0 -b 1.66.0 -o release
 
-# Build with clang 5.0.1 and boost 1.66.0 in debug mode and no download
+# Build with clang 6.0.0 and boost 1.66.0 in debug mode and no download
 $BUILD_SCRIPT -n -c clang -v 6.0.0 -b 1.66.0 -f '-DCMAKE_CXX_FLAGS=-stdlib=libc++'
 
-# Build with clang 5.0.1 and boost 1.66.0 in debug mode and no download
+# Build with clang 6.0.0 and boost 1.66.0 in debug mode and no download
 $BUILD_SCRIPT -n -c clang -v 6.0.0 -o release -b 1.66.0 -f '-DCMAKE_CXX_FLAGS=-stdlib=libc++'

@@ -145,6 +145,7 @@ cmake \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
     $CMAKE_FLAGS \
     $SOURCE_DIRECTORY &>/dev/null
+if ! [[ $? == "0" ]]; then echo "ERROR: configuration failed"; error; fi
 
 make -j $THREADS &>/dev/null
 if ! [[ $? == "0" ]]; then echo "ERROR: failed to build HPX"; error; fi

@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2015-2016 Alireza Kheirkhahan
+# Copyright (c) 2015-2018 Alireza Kheirkhahan
 # Copyright (c) 2009-2012 Bryce Adelstein-Lelbach
 #
 # Distributed under the Boost Software License, Version 1.0. (See accompanying
