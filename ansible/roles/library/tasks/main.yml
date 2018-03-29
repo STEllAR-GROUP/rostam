@@ -133,8 +133,6 @@
     - cuda
     - cuda-9-0
     - cuda-8-0
-    - cuda-7-5
-    - cuda-7-0
   when: ansible_architecture == "x86_64"
 
 - name: install ninja dependencies
