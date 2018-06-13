@@ -62,3 +62,4 @@
   yum: name={{ item }} state=installed
   with_items:
     - iperf3
+    - numactl

@@ -163,6 +163,7 @@
     - libpng-devel
     - tmux
     - tig
+    - numactl
 
 - name: Install Prerequisites for Phylanx
   yum: name={{ item }} state=installed
@@ -178,6 +179,7 @@
     - lapack-devel
     - lapack64-devel
     - blas64-devel
+    - openblas-devel
 
 - name: update pip 3.4
   pip: executable=pip3.4 name=pip state=latest
