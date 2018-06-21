@@ -145,8 +145,8 @@ echo "set root $PREFIX" >> $MODULE_DIRECTORY/gcc/$VERSION
 echo "" >> $MODULE_DIRECTORY/gcc/$VERSION
 echo "conflict gcc" >> $MODULE_DIRECTORY/gcc/$VERSION
 
-echo "if { ![is-loaded binutils/2.28] } {" >> $MODULE_DIRECTORY/gcc/$VERSION
-echo "    module load binutils/2.28" >> $MODULE_DIRECTORY/gcc/$VERSION
+echo "if { ![is-loaded binutils/2.30] } {" >> $MODULE_DIRECTORY/gcc/$VERSION
+echo "    module load binutils/2.30" >> $MODULE_DIRECTORY/gcc/$VERSION
 echo "}" >> $MODULE_DIRECTORY/gcc/$VERSION
 
 echo "" >> $MODULE_DIRECTORY/gcc/$VERSION

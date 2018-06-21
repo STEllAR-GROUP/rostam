@@ -192,8 +192,8 @@ echo "set root $PREFIX" >> $MODULE_DIRECTORY/clang/$VERSION
 echo "" >> $MODULE_DIRECTORY/clang/$VERSION
 echo "conflict clang" >> $MODULE_DIRECTORY/clang/$VERSION
 
-echo "if { ![is-loaded binutils/2.28] } {" >> $MODULE_DIRECTORY/clang/$VERSION
-echo "    module load binutils/2.28" >> $MODULE_DIRECTORY/clang/$VERSION
+echo "if { ![is-loaded binutils/2.30] } {" >> $MODULE_DIRECTORY/clang/$VERSION
+echo "    module load binutils/2.30" >> $MODULE_DIRECTORY/clang/$VERSION
 echo "}" >> $MODULE_DIRECTORY/clang/$VERSION
 
 echo "" >> $MODULE_DIRECTORY/clang/$VERSION
