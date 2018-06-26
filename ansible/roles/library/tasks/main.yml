@@ -164,6 +164,7 @@
     - tmux
     - tig
     - numactl
+    - colordiff
 
 - name: Install Prerequisites for Phylanx
   yum: name={{ item }} state=installed
