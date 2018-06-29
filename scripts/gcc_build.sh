@@ -110,6 +110,7 @@ contrib/download_prerequisites
 --disable-libgcj \
 --enable-linker-build-id \
 --enable-gnu-indirect-function \
+--enable-libmpx
 --with-tune=generic \
 --with-arch_32=i686 \
 --build=x86_64-redhat-linux 
