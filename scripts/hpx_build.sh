@@ -135,11 +135,13 @@ module load $COMPILER/$VERSION
 module load boost/$BOOT_VERSTION-$COMPILER$VERSION-$BUILD_TYPE
 module load mpi/mpich-3.2-x86_64
 module load papi/5.6.0
+module load gperftools/2.7
 
 echo "Compiling HPX whith $COMPILER $VERSION with boost $BOOT_VERSTION in $BUILD_TYPE mode"
 
 cmake \
     -DHPX_WITH_THREAD_IDLE_RATES=ON \
+    -DHPX_WITH_THREAD_LOCAL_STORAGE=ON \
     -DHPX_WITH_PARCELPORT_MPI=ON \
     -DHPX_WITH_PAPI=On \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
@@ -190,6 +192,10 @@ echo "if { ![is-loaded papi/5.6.0] } {" >> $MODULE_FILE
 echo "  module load papi/5.6.0" >> $MODULE_FILE
 echo "}" >> $MODULE_FILE
 echo "" >> $MODULE_FILE
+echo "if { ![is-loaded gperftools/2.7] } {" >> $MODULE_FILE
+echo "  module load gperftools/2.7" >> $MODULE_FILE
+echo "}" >> $MODULE_FILE
+echo "" >> $MODULE_FILE
 echo "conflict hpx" >> $MODULE_FILE
 echo "" >> $MODULE_FILE
 echo "prepend-path  CPATH             \$root/include" >> $MODULE_FILE
@@ -199,6 +205,6 @@ echo "prepend-path  PATH        \$root/bin" >> $MODULE_FILE
 echo "prepend-path  PKG_CONFIG_PATH        \$root/lib/pkgconfig" >> $MODULE_FILE
 echo "" >> $MODULE_FILE
 echo "setenv  HPX_ROOT          \$root ">> $MODULE_FILE
-echo "setenv  HPX_DIR           \$root /lib/cmake/HPX/" >> $MODULE_FILE
+echo "setenv  HPX_DIR           \$root/lib/cmake/HPX/" >> $MODULE_FILE
 
 echo "Module file installed in $MODULE_FILE"
