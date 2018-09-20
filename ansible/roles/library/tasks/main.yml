@@ -28,8 +28,22 @@
     - devtoolset-4-libatomic-devel
     - devtoolset-6-libatomic-devel
     - devtoolset-7-libatomic-devel
-    - git19
+  when: ansible_architecture == "x86_64"
+
+- name: Install python packages from softwarecollections
+  yum: name={{ item }} state=installed
+  with_items:
     - rh-python35
+    - rh-python35-numpy
+    - rh-python35-build
+    - rh-python35-python-test
+    - rh-python35-scipy
+    - rh-python36
+    - rh-python36-numpy
+    - rh-python36-build
+    - rh-python36-python-test
+    - rh-python36-scipy
+
   when: ansible_architecture == "x86_64"
 
 - name: Install HPX dependency packages
