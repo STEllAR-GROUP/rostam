@@ -63,3 +63,4 @@
   with_items:
     - iperf3
     - numactl
+    - hdparm

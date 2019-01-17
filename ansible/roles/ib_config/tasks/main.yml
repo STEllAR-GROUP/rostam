@@ -8,11 +8,6 @@
   yum: name={{ item }} state=installed disable_gpg_check=yes
   with_items:
     - "@Infiniband Support"
-    - infinipath-psm
-    - infiniband-diags 
-    - perftest 
-    - qperf
-    - libibmad-devel
     
 - name: copy rmda limits config file
   copy: src=/tools/rostam/config/rdma_limits dest=/etc/security/limits.d/rdma.conf

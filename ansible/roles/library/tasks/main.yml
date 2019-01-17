@@ -199,6 +199,30 @@
     - blas64-devel
     - openblas-devel
 
+- name: Install Prerequisites for vim 8
+  yum: name={{ item }} state=installed
+  with_items:
+    - ruby
+    - ruby-devel
+    - lua
+    - lua-devel
+    - luajit
+    - luajit-devel
+    - ctags
+    - git
+    - python
+    - python-devel
+    - python34
+    - python34-devel
+    - tcl-devel
+    - perl
+    - perl-devel
+    - perl-ExtUtils-ParseXS
+    - perl-ExtUtils-XSpp
+    - perl-ExtUtils-CBuilder
+    - perl-ExtUtils-Embed
+
+
 - name: update pip 3.4
   pip: executable=pip3.4 name=pip state=latest
 
