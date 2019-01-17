@@ -145,6 +145,9 @@
   with_items:
     - cuda-drivers
     - cuda
+    - cuda-10-0
+    - cuda-9-2
+    - cuda-9-1
     - cuda-9-0
     - cuda-8-0
   when: ansible_architecture == "x86_64"
