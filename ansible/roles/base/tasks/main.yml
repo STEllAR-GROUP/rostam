@@ -64,3 +64,5 @@
     - iperf3
     - numactl
     - hdparm
+    - iotop
+    - glances

@@ -222,6 +222,10 @@
     - perl-ExtUtils-CBuilder
     - perl-ExtUtils-Embed
 
+- name: Install singularity
+  yum: name={{ item }} state=installed
+  with_items:
+    - singularity
 
 - name: update pip 3.4
   pip: executable=pip3.4 name=pip state=latest
