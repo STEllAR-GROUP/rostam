@@ -25,10 +25,18 @@
 - name: install slurm packages
   yum: name={{ item }} state=installed
   with_items:
-    - /pkg/slurm/17.02.10/slurm-17.02.10-1.el7.centos.x86_64.rpm
-    - /pkg/slurm/17.02.10/slurm-plugins-17.02.10-1.el7.centos.x86_64.rpm
-    - /pkg/slurm/17.02.10/slurm-munge-17.02.10-1.el7.centos.x86_64.rpm
-    - /pkg/slurm/17.02.10/slurm-pam_slurm-17.02.10-1.el7.centos.x86_64.rpm
+    - /pkg/slurm/17.11.12/slurm-17.11.12-1.el7.x86_64.rpm
+    - /pkg/slurm/17.11.12/slurm-pam_slurm-17.11.12-1.el7.x86_64.rpm
+    - /pkg/slurm/17.11.12/slurm-contribs-17.11.12-1.el7.x86_64.rpm
+    - /pkg/slurm/17.11.12/slurm-perlapi-17.11.12-1.el7.x86_64.rpm
+    - /pkg/slurm/17.11.12/slurm-devel-17.11.12-1.el7.x86_64.rpm
+    - /pkg/slurm/17.11.12/slurm-slurmctld-17.11.12-1.el7.x86_64.rpm
+    - /pkg/slurm/17.11.12/slurm-example-configs-17.11.12-1.el7.x86_64.rpm
+    - /pkg/slurm/17.11.12/slurm-slurmd-17.11.12-1.el7.x86_64.rpm
+    - /pkg/slurm/17.11.12/slurm-libpmi-17.11.12-1.el7.x86_64.rpm
+    - /pkg/slurm/17.11.12/slurm-slurmdbd-17.11.12-1.el7.x86_64.rpm
+    - /pkg/slurm/17.11.12/slurm-openlava-17.11.12-1.el7.x86_64.rpm
+    - /pkg/slurm/17.11.12/slurm-torque-17.11.12-1.el7.x86_64.rpm
   when: ansible_architecture == "x86_64"
 
 - name: install slurm packages
