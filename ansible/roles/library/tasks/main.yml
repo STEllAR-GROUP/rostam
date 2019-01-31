@@ -222,6 +222,17 @@
     - perl-ExtUtils-CBuilder
     - perl-ExtUtils-Embed
 
+- name: Install Prerequisites for ASGA
+  yum: name={{ item }} state=installed
+  with_items:
+    - netcdf-cxx-devel
+    - netcdf-fortran-devel
+    - netcdf-fortran-mpich-devel
+    - netcdf-fortran-openmpi-devel
+    - netcdf-mpich-devel
+    - netcdf-openmpi-devel
+    - netcdf4-python
+
 - name: Install singularity
   yum: name={{ item }} state=installed
   with_items:
