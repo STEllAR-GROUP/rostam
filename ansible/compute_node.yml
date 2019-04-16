@@ -18,4 +18,5 @@
     - buildbot
     - compute_node
     - phylanx
-     - cera
+    - cera
+    - flecsi
