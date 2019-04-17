@@ -6,6 +6,7 @@
 ---
 - name: mount the nfs file system
   mount: name=/pkg/ src=otter:/tools/pkg  fstype=nfs state=mounted
+  when: ansible_architecture == "x86_64" or ansible_architecture == "ppc64le"
 
 - name: install slurm dependencies
   yum: name={{ item }} state=installed
@@ -48,11 +49,32 @@
     - /pkg/slurm/17.02.10-ppc64le/slurm-pam_slurm-17.02.10-1.el7.centos.ppc64le.rpm
   when: ansible_architecture == "ppc64le"
 
+- name: install slurm packages
+  yum: 
+    name:
+      - slurm-doc
+      - slurm-perlapi
+      - slurm-libs
+      - slurm-gui
+      - slurm-slurmdbd
+      - slurm-slurmd
+      - slurm-slurmctld
+      - slurm-devel
+      - slurm-rrdtool
+      - slurm-contribs
+      - slurm-torque
+      - slurm-pam_slurm
+      - slurm-openlava
+    state: present
+  when: ansible_distribution == "Fedora"
+
 - name: unmount the temporary file system
   mount: name=/pkg/ src=otter:/tools/pkg  fstype=nfs state=unmounted
+  when: ansible_architecture == "x86_64" or ansible_architecture == "ppc64le"
 
 - name: remove temporary file system from fstab in case Ansible made it permanent
   mount: name=/pkg/ src=otter:/tools/pkg  fstype=nfs state=absent
+  when: ansible_architecture == "x86_64" or ansible_architecture == "ppc64le"
 
 - name: create slurm group
   group: name=slurm gid=64030 state=present
