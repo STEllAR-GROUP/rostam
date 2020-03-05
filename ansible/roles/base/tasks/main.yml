@@ -1,4 +1,4 @@
-# Copyright (c) 2015-2017 Alireza Kheirkhahan
+# Copyright (c) 2015-2019 Alireza Kheirkhahan
 #
 # Distributed under the Boost Software License, Version 1.0. (See accompanying
 # file BOOST_LICENSE_1_0.rst or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -26,43 +26,38 @@
 
 - name: Install epel
   yum: name=epel-release state=present
+  when: ansible_architecture == "x86_64" or ansible_architecture == "ppc64le"
 
 - name: install X11 library
-  yum: name={{ item }} state=installed
-  with_items:
-    - xorg-x11-utils
-    - xorg-x11-xauth
-    - xorg-x11-fonts-ISO8859-1-100dpi
-
-- name: install python libraris
-  yum: name={{ item }} state=installed
-  with_items:
-    - python-virtualenv
-    - python-pip
-    - python-devel
-    - python-twisted-core
-    - python-twisted-web
-    - python-twisted-words
+  yum:
+    name:
+      - xorg-x11-utils
+      - xorg-x11-xauth
+      - xorg-x11-fonts-ISO8859-1-100dpi
+    state: present
 
 - name: install java libraris
-  yum: name={{ item }} state=installed
-  with_items:
-    - java-1.8.0-openjdk
-    - java-1.8.0-openjdk-devel
-    - java-1.8.0-openjdk-headless
+  yum: 
+    name:
+      - java-1.8.0-openjdk
+      - java-1.8.0-openjdk-devel
+      - java-1.8.0-openjdk-headless
+    state: present
 
 - name: insalling some base packages
-  yum: name={{ item }} state=installed
-  with_items:
-    - zsh
-    - p7zip
-    - p7zip-plugins
+  yum: 
+    name:
+      - zsh
+      - p7zip
+      - p7zip-plugins
+    state: present
 
 - name: insalling some admin tools
-  yum: name={{ item }} state=installed
-  with_items:
-    - iperf3
-    - numactl
-    - hdparm
-    - iotop
-    - glances
+  yum: 
+    name:
+      - iperf3
+      - numactl
+      - hdparm
+      - iotop
+      - glances
+    state: present

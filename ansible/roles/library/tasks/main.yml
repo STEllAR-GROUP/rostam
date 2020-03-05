@@ -1,4 +1,4 @@
-# Copyright (c) 2015-2016 Alireza Kheirkhahan
+# Copyright (c) 2015-2019 Alireza Kheirkhahan
 #
 # Distributed under the Boost Software License, Version 1.0. (See accompanying
 # file BOOST_LICENSE_1_0.rst or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -9,234 +9,269 @@
 - name: copy module config
   copy: src=/tools/rostam/config/modulespath dest=/usr/share/Modules/init/.modulespath
 
+- name: install python libraris
+  yum:
+    name:
+    - python-virtualenv
+    - python-pip
+    - python-devel
+    - python-twisted-core
+    - python-twisted-web
+    - python-twisted-words
+    state: present
+
 - name: Install softwarecollections repo
   yum: name=centos-release-scl state=present
   when: ansible_architecture == "x86_64"
 
 - name: Install softwarecollections packages
-  yum: name={{ item }} state=installed
-  with_items:
-    - devtoolset-3-toolchain
-    - devtoolset-3-perftools
-    - devtoolset-4-toolchain
-    - devtoolset-4-perftools
-    - devtoolset-6-toolchain
-    - devtoolset-6-perftools
-    - devtoolset-7-toolchain
-    - devtoolset-7-perftools
-    - devtoolset-3-libatomic-devel
-    - devtoolset-4-libatomic-devel
-    - devtoolset-6-libatomic-devel
-    - devtoolset-7-libatomic-devel
+  yum:
+    name:
+      - devtoolset-3-toolchain
+      - devtoolset-3-perftools
+      - devtoolset-4-toolchain
+      - devtoolset-4-perftools
+      - devtoolset-6-toolchain
+      - devtoolset-6-perftools
+      - devtoolset-7-toolchain
+      - devtoolset-7-perftools
+      - devtoolset-3-libatomic-devel
+      - devtoolset-4-libatomic-devel
+      - devtoolset-6-libatomic-devel
+      - devtoolset-7-libatomic-devel
+      - devtoolset-8-toolchain
+      - devtoolset-8-perftools
+      - devtoolset-8-libatomic-devel
+    state: present
   when: ansible_architecture == "x86_64"
 
 - name: Install python packages from softwarecollections
-  yum: name={{ item }} state=installed
-  with_items:
-    - rh-python35
-    - rh-python35-numpy
-    - rh-python35-build
-    - rh-python35-python-test
-    - rh-python35-scipy
-    - rh-python36
-    - rh-python36-numpy
-    - rh-python36-build
-    - rh-python36-python-test
-    - rh-python36-scipy
+  yum:
+    name:
+      - rh-python35
+      - rh-python35-numpy
+      - rh-python35-build
+      - rh-python35-python-test
+      - rh-python35-scipy
+      - rh-python36
+      - rh-python36-numpy
+      - rh-python36-build
+      - rh-python36-python-test
+      - rh-python36-scipy
 
   when: ansible_architecture == "x86_64"
 
 - name: Install HPX dependency packages
-  yum: name={{ item }} state=installed
-  with_items:
-    - libX11-devel
-    - cmake
-    - libibverbs-devel
-    - hdf5-devel
-    - hdf5-mpich-devel
-    - hdf5-openmpi-devel
-    - gperftools-devel
-    - libunwind-devel
-    - papi-devel
-    - openmpi-devel
-    - mpich-devel
-    - mpich-3.2-devel
-    - mvapich2-2.2
-    - mvapich2-2.2-devel
+  yum:
+    name:
+      - libX11-devel
+      - cmake
+      - libibverbs-devel
+      - hdf5-devel
+      - hdf5-mpich-devel
+      - hdf5-openmpi-devel
+      - gperftools-devel
+      - libunwind-devel
+      - papi-devel
+      - openmpi-devel
+      - mpich-devel
+      - mpich-3.2-devel
+      - mvapich2-2.2
+      - mvapich2-2.2-devel
+    state: present
 
 - name: Install Buildbot dependency packages
-  yum: name={{ item }} state=installed
-  with_items:
-    - lsb
-    - docbook-utils
-    - docbook-dtds
-    - docbook-style-xsl.noarch
+  yum:
+    name:
+      - lsb
+      - docbook-utils
+      - docbook-dtds
+      - docbook-style-xsl.noarch
+    state: present
 
 - name: installing clang packages
-  yum: name={{ item }} state=installed
-  with_items:
-    - clang
-    - clang-analyzer
-    - clang-devel
-    - llvm-devel
-    - llvm-doc
+  yum:
+    name:
+      - clang
+      - clang-analyzer
+      - clang-devel
+      - llvm-devel
+      - llvm-doc
+    state: present
 
 - name: installing lldb packages
-  yum: name={{ item }} state=installed
-  with_items:
-    - lldb
-    - lldb-devel
+  yum:
+    name:
+      - lldb
+      - lldb-devel
+    state: present
   when: ansible_architecture == "x86_64"
 
 - name: installing clang requirements
-  yum: name={{ item }} state=installed
-  with_items:
-    - ncurses-devel
-    - swig
-    - libedit
-    - libedit-devel
-    - libxml2-devel
-    - python-devel
-    - libatomic
+  yum:
+    name:
+      - ncurses-devel
+      - swig
+      - libedit
+      - libedit-devel
+      - libxml2-devel
+      - python-devel
+      - libatomic
+    state: present
 
 - name: installing boost packages
-  yum: name={{ item }} state=installed
-  with_items:
-    - boost
-    - boost-build
-    - boost-devel
+  yum:
+    name:
+      - boost
+      - boost-build
+      - boost-devel
+    state: present
 
 - name: installing boosti mpi packages
-  yum: name={{ item }} state=installed
-  with_items:
-    - boost-mpich-devel
-    - boost-openmpi-devel
+  yum:
+    name:
+      - boost-mpich-devel
+      - boost-openmpi-devel
+    state: present
   when: ansible_architecture == "x86_64"
 
 - name: installing libraries for boost 
-  yum: name={{ item }} state=installed
-  with_items:
-    - libicu-devel
-    - bzip2-devel
-    - texinfo
-    - zlib-devel
-    - python-devel
+  yum:
+    name:
+      - libicu-devel
+      - bzip2-devel
+      - texinfo
+      - zlib-devel
+      - python-devel
+    state: present
 
 - name: update pip
   pip: name=pip state=latest
 
-- name: install conan
-  pip: name=conan state=present
+#- name: install conan
+#  pip: name=conan state=present
 
 - name: installing intel compiler dependency packages
-  yum: name={{ item }} state=installed
-  with_items:
-    - glibc-devel.i686
-    - libstdc++-devel.i686
-    - libgcc.i686
+  yum:
+    name:
+      - glibc-devel.i686
+      - libstdc++-devel.i686
+      - libgcc.i686
+    state: present
   when: ansible_architecture == "x86_64"
 
 - name: installing CUDA repo
-  yum: name=http://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-repo-rhel7-8.0.44-1.x86_64.rpm state=installed
+  yum:
+    name:
+      - http://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-repo-rhel7-8.0.44-1.x86_64.rpm
+    state: present
   when: ansible_architecture == "x86_64"
 
 - name: install CUDA drivers and libraries
-  yum: name={{ item }} state=installed
-  with_items:
-    - cuda-drivers
-    - cuda
-    - cuda-10-0
-    - cuda-9-2
-    - cuda-9-1
-    - cuda-9-0
-    - cuda-8-0
+  yum:
+    name:
+      - cuda-drivers
+      - cuda
+      - cuda-10-1
+      - cuda-10-0
+      - cuda-9-2
+      - cuda-9-1
+      - cuda-9-0
+      - cuda-8-0
+    state: present
   when: ansible_architecture == "x86_64"
 
 - name: install ninja dependencies
-  yum: name={{ item }} state=installed
-  with_items:
-    - re2c
+  yum:
+    name:
+      - re2c
+    state: present
 
 - name: Install User Requested Packages
-  yum: name={{ item }} state=installed
-  with_items:
-    - emacs
-    - htop
-    - bash-completion-extras
-    - scons
-    - gdal
-    - gdal-devel
-    - jemalloc
-    - jemalloc-devel
-    - ptscotch-mpich
-    - ptscotch-mpich-devel
-    - ptscotch-mpich-devel-parmetis
-    - ptscotch-openmpi
-    - ptscotch-openmpi-devel
-    - ptscotch-openmpi-devel-parmetis
-    - scotch-devel
-    - scotch-doc
-    - scotch
-    - libpng-devel
-    - tmux
-    - tig
-    - numactl
-    - colordiff
+  yum:
+    name:
+      - emacs
+      - htop
+      - bash-completion-extras
+      - scons
+      - gdal
+      - gdal-devel
+      - jemalloc
+      - jemalloc-devel
+      - ptscotch-mpich
+      - ptscotch-mpich-devel
+      - ptscotch-mpich-devel-parmetis
+      - ptscotch-openmpi
+      - ptscotch-openmpi-devel
+      - ptscotch-openmpi-devel-parmetis
+      - scotch-devel
+      - scotch-doc
+      - scotch
+      - libpng-devel
+      - tmux
+      - tig
+      - numactl
+      - colordiff
+    state: present
 
 - name: Install Prerequisites for Phylanx
-  yum: name={{ item }} state=installed
-  with_items:
-    - catch-devel
-    - eigen3-devel
-    - eigen3-doc
-    - python34
-    - python34-devel
-    - python34-pytest
-    - python34-pip
-    - blas-devel
-    - lapack-devel
-    - lapack64-devel
-    - blas64-devel
-    - openblas-devel
+  yum:
+    name:
+      - catch-devel
+      - eigen3-devel
+      - eigen3-doc
+      - python34
+      - python34-devel
+      - python34-pytest
+      - python34-pip
+      - blas-devel
+      - lapack-devel
+      - lapack64-devel
+      - blas64-devel
+      - openblas-devel
+    state: present
 
 - name: Install Prerequisites for vim 8
-  yum: name={{ item }} state=installed
-  with_items:
-    - ruby
-    - ruby-devel
-    - lua
-    - lua-devel
-    - luajit
-    - luajit-devel
-    - ctags
-    - git
-    - python
-    - python-devel
-    - python34
-    - python34-devel
-    - tcl-devel
-    - perl
-    - perl-devel
-    - perl-ExtUtils-ParseXS
-    - perl-ExtUtils-XSpp
-    - perl-ExtUtils-CBuilder
-    - perl-ExtUtils-Embed
+  yum:
+    name:
+      - ruby
+      - ruby-devel
+      - lua
+      - lua-devel
+      - luajit
+      - luajit-devel
+      - ctags
+      - git
+      - python
+      - python-devel
+      - python34
+      - python34-devel
+      - tcl-devel
+      - perl
+      - perl-devel
+      - perl-ExtUtils-ParseXS
+      - perl-ExtUtils-XSpp
+      - perl-ExtUtils-CBuilder
+      - perl-ExtUtils-Embed
+    state: present
 
 - name: Install Prerequisites for ASGA
-  yum: name={{ item }} state=installed
-  with_items:
-    - netcdf-cxx-devel
-    - netcdf-fortran-devel
-    - netcdf-fortran-mpich-devel
-    - netcdf-fortran-openmpi-devel
-    - netcdf-mpich-devel
-    - netcdf-openmpi-devel
-    - netcdf4-python
+  yum:
+    name:
+      - netcdf-cxx-devel
+      - netcdf-fortran-devel
+      - netcdf-fortran-mpich-devel
+      - netcdf-fortran-openmpi-devel
+      - netcdf-mpich-devel
+      - netcdf-openmpi-devel
+      - netcdf4-python
+    state: present
 
 - name: Install singularity
-  yum: name={{ item }} state=installed
-  with_items:
-    - singularity
+  yum:
+    name:
+      - singularity
+    state: present
 
 - name: update pip 3.4
   pip: executable=pip3.4 name=pip state=latest
@@ -245,8 +280,9 @@
   pip: executable=pip3.4 name=pytest state=latest
 
 - name: Install dependencies for dell software
-  yum: name={{ item }} state=installed
-  with_items:
-    - compat-libstdc++-33.i686
-    - libxml2.i686
+  yum:
+    name:
+      - compat-libstdc++-33.i686
+      - libxml2.i686
+    state: present
   when: ansible_system_vendor == "Dell Inc."

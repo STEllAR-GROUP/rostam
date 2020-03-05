@@ -2,7 +2,6 @@ This playbook configures new node for the cluster.
 
 Before running this playbook you must:
 	- Add MAC Address and Hostname to /etc/dnsmasq.conf (Needed for PXE_boot)
-	- Add Hostname and IP Address to /etc/ansible/hosts (Needed for PXE_boot)
 	- Add root Public Key to new host (Done by Kickstart)
 	- Add Hostname to /etc/ansible/hosts
 	- Add Hostname to /etc/slurm/slurm.conf

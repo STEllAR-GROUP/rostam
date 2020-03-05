@@ -1,4 +1,4 @@
-# Copyright (c) 2015-2016 Alireza Kheirkhahan
+# Copyright (c) 2015-2020 Alireza Kheirkhahan
 # Copyright (c) 2016 Parsa Amini
 #
 # Distributed under the Boost Software License, Version 1.0. (See accompanying

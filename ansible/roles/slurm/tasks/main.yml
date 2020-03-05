@@ -1,4 +1,4 @@
-# Copyright (c) 2015-2016 Alireza Kheirkhahan
+# Copyright (c) 2015-2019 Alireza Kheirkhahan
 #
 # Distributed under the Boost Software License, Version 1.0. (See accompanying
 # file BOOST_LICENSE_1_0.rst or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -9,48 +9,51 @@
   when: ansible_architecture == "x86_64" or ansible_architecture == "ppc64le"
 
 - name: install slurm dependencies
-  yum: name={{ item }} state=installed
-  with_items:
-    - openssl-devel
-    - pam-devel
-    - readline-devel
-    - perl-ExtUtils-MakeMaker
-    - perl-Switch
-    - redhat-lsb
-    - hwloc
-    - hwloc-devel 
-    - ncurses-devel
-    - ncurses 
-    - perl-DBI
+  yum:
+    name:
+      - openssl-devel
+      - pam-devel
+      - readline-devel
+      - perl-ExtUtils-MakeMaker
+      - perl-Switch
+      - redhat-lsb
+      - hwloc
+      - hwloc-devel
+      - ncurses-devel
+      - ncurses
+      - perl-DBI
+    state: present
 
 - name: install slurm packages
-  yum: name={{ item }} state=installed
-  with_items:
-    - /pkg/slurm/17.11.12/slurm-17.11.12-1.el7.x86_64.rpm
-    - /pkg/slurm/17.11.12/slurm-pam_slurm-17.11.12-1.el7.x86_64.rpm
-    - /pkg/slurm/17.11.12/slurm-contribs-17.11.12-1.el7.x86_64.rpm
-    - /pkg/slurm/17.11.12/slurm-perlapi-17.11.12-1.el7.x86_64.rpm
-    - /pkg/slurm/17.11.12/slurm-devel-17.11.12-1.el7.x86_64.rpm
-    - /pkg/slurm/17.11.12/slurm-slurmctld-17.11.12-1.el7.x86_64.rpm
-    - /pkg/slurm/17.11.12/slurm-example-configs-17.11.12-1.el7.x86_64.rpm
-    - /pkg/slurm/17.11.12/slurm-slurmd-17.11.12-1.el7.x86_64.rpm
-    - /pkg/slurm/17.11.12/slurm-libpmi-17.11.12-1.el7.x86_64.rpm
-    - /pkg/slurm/17.11.12/slurm-slurmdbd-17.11.12-1.el7.x86_64.rpm
-    - /pkg/slurm/17.11.12/slurm-openlava-17.11.12-1.el7.x86_64.rpm
-    - /pkg/slurm/17.11.12/slurm-torque-17.11.12-1.el7.x86_64.rpm
+  yum:
+    name:
+      - /pkg/slurm/17.11.12/slurm-17.11.12-1.el7.x86_64.rpm
+      - /pkg/slurm/17.11.12/slurm-pam_slurm-17.11.12-1.el7.x86_64.rpm
+      - /pkg/slurm/17.11.12/slurm-contribs-17.11.12-1.el7.x86_64.rpm
+      - /pkg/slurm/17.11.12/slurm-perlapi-17.11.12-1.el7.x86_64.rpm
+      - /pkg/slurm/17.11.12/slurm-devel-17.11.12-1.el7.x86_64.rpm
+      - /pkg/slurm/17.11.12/slurm-slurmctld-17.11.12-1.el7.x86_64.rpm
+      - /pkg/slurm/17.11.12/slurm-example-configs-17.11.12-1.el7.x86_64.rpm
+      - /pkg/slurm/17.11.12/slurm-slurmd-17.11.12-1.el7.x86_64.rpm
+      - /pkg/slurm/17.11.12/slurm-libpmi-17.11.12-1.el7.x86_64.rpm
+      - /pkg/slurm/17.11.12/slurm-slurmdbd-17.11.12-1.el7.x86_64.rpm
+      - /pkg/slurm/17.11.12/slurm-openlava-17.11.12-1.el7.x86_64.rpm
+      - /pkg/slurm/17.11.12/slurm-torque-17.11.12-1.el7.x86_64.rpm
+    state: present
   when: ansible_architecture == "x86_64"
 
 - name: install slurm packages
-  yum: name={{ item }} state=installed
-  with_items:
-    - /pkg/slurm/17.02.10-ppc64le/slurm-17.02.10-1.el7.centos.ppc64le.rpm
-    - /pkg/slurm/17.02.10-ppc64le/slurm-plugins-17.02.10-1.el7.centos.ppc64le.rpm
-    - /pkg/slurm/17.02.10-ppc64le/slurm-munge-17.02.10-1.el7.centos.ppc64le.rpm
-    - /pkg/slurm/17.02.10-ppc64le/slurm-pam_slurm-17.02.10-1.el7.centos.ppc64le.rpm
+  yum:
+    name:
+      - /pkg/slurm/17.02.10-ppc64le/slurm-17.02.10-1.el7.centos.ppc64le.rpm
+      - /pkg/slurm/17.02.10-ppc64le/slurm-plugins-17.02.10-1.el7.centos.ppc64le.rpm
+      - /pkg/slurm/17.02.10-ppc64le/slurm-munge-17.02.10-1.el7.centos.ppc64le.rpm
+      - /pkg/slurm/17.02.10-ppc64le/slurm-pam_slurm-17.02.10-1.el7.centos.ppc64le.rpm
+    state: present
   when: ansible_architecture == "ppc64le"
 
 - name: install slurm packages
-  yum: 
+  yum:
     name:
       - slurm-doc
       - slurm-perlapi
